@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using Salik_Bug_Tracker_API.Data;
 using Salik_Bug_Tracker_API.DTO;
 using Salik_Bug_Tracker_API.Models;
+using Salik_Bug_Tracker_API.Models.Helpers;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -62,19 +63,9 @@ namespace Salik_Bug_Tracker_API.Controllers
             {
                 //Add user role
 
-                //switch (registerVM.Role)
-                //{
-                //    case UserRoles.Manager:
-                //        await _userManager.AddToRoleAsync(newUser, UserRoles.Manager);
-                //        break;
-                //    case UserRoles.Student:
-                //        await _userManager.AddToRoleAsync(newUser, UserRoles.Student);
-                //        break;
-                //    default:
-                //        break;
-                //}
-
-
+               
+               await _userManager.AddToRoleAsync(newUser, UserRoles.Developer);
+                   
                 return Ok("User created");
             }
             return BadRequest("User could not be created");

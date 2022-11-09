@@ -2,7 +2,7 @@
 {
     public class UserRoles
     {
-        public const string Manager = "Developer";
-        public const string Student = "Admin";
+        public const string Developer = "Developer";
+        public const string Admin = "Admin";
     }
 }
