@@ -6,6 +6,6 @@
         public string? Name { get; set; }
         public string? Level { get; set; }
         public ApplicationUser? user { get; set; }
-        public int ApplicationUserId { get; set; }
+        public string? ApplicationUserId { get; set; }
     }
 }

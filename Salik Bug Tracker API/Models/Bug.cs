@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
         public ApplicationUser? UserReportedBy { get; set; }
-        public int ApplicationUserId { get; set; }
+        public string? ApplicationUserId { get; set; }
         public Module? module { get; set; }
         public int ModulesId { get; set; }
         public string? Description { get; set; }
@@ -14,6 +14,7 @@
         public string? IssueSummary { get; set; }
         public string? Status { get; set; }
         public string? Priority { get; set; }
+        public IEnumerable<BugDeveloper>? bugDevelopers { get; set; }
     }
 
     public class Priorities
@@ -21,6 +22,7 @@
         public const string High="High";
         public const string Medium = "Medium";
         public const string Low = "Low";
+        
 
     }
 

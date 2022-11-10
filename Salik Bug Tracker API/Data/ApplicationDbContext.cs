@@ -20,6 +20,43 @@ namespace Salik_Bug_Tracker_API.Data
         public DbSet<ModuleUser> ModuleUsers { get; set; }
         public DbSet<Skill> skills { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<BugDeveloper>()
+               .HasKey(d => d.Id);
+
+            modelBuilder.Entity<ModuleUser>()
+                .HasKey(d => d.Id);
+
+            modelBuilder.Entity<ModuleUser>()
+           .HasOne(bc => bc.module)
+           .WithMany(bc => bc.moduleUsers)
+           .HasForeignKey(bc => bc.ModuleId)
+           .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<ModuleUser>()
+               .HasOne(bc => bc.user)
+               .WithMany(bc => bc.moduleUsers)
+               .HasForeignKey(bc => bc.ApplicationUserId)
+               .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<BugDeveloper>()
+           .HasOne(bc => bc.bug)
+           .WithMany(bc => bc.bugDevelopers)
+           .HasForeignKey(bc => bc.BugId)
+           .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<BugDeveloper>()
+               .HasOne(bc => bc.user)
+               .WithMany(bc => bc.bugDevelopers)
+               .HasForeignKey(bc => bc.ApplicationUserId)
+               .OnDelete(DeleteBehavior.Cascade);
+
+            base.OnModelCreating(modelBuilder);
+
+
+
+        }
 
     }
 }

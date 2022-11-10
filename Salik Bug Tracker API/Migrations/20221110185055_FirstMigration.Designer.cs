@@ -12,8 +12,8 @@ using Salik_Bug_Tracker_API.Data;
 namespace Salik_Bug_Tracker_API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221109085854_addingRefreshToken")]
-    partial class addingRefreshToken
+    [Migration("20221110185055_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -228,6 +228,173 @@ namespace Salik_Bug_Tracker_API.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Salik_Bug_Tracker_API.Models.Bug", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateClosed")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("IssueSummary")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ModulesId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Priority")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("moduleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("moduleId");
+
+                    b.ToTable("bugs");
+                });
+
+            modelBuilder.Entity("Salik_Bug_Tracker_API.Models.BugDeveloper", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("AssignedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("BugId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateSolved")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SolutionDetail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("BugId");
+
+                    b.ToTable("bugDevelopers");
+                });
+
+            modelBuilder.Entity("Salik_Bug_Tracker_API.Models.Module", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("ActualEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TargetEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("modules");
+                });
+
+            modelBuilder.Entity("Salik_Bug_Tracker_API.Models.ModuleUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("ModuleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("ModuleId");
+
+                    b.ToTable("ModuleUsers");
+                });
+
+            modelBuilder.Entity("Salik_Bug_Tracker_API.Models.Project", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("ActualEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("TargetEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("projects");
+                });
+
             modelBuilder.Entity("Salik_Bug_Tracker_API.Models.RefreshToken", b =>
                 {
                     b.Property<int>("Id")
@@ -264,6 +431,30 @@ namespace Salik_Bug_Tracker_API.Migrations
                     b.ToTable("RefreshTokens");
                 });
 
+            modelBuilder.Entity("Salik_Bug_Tracker_API.Models.Skill", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Level")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("skills");
+                });
+
             modelBuilder.Entity("Salik_Bug_Tracker_API.Models.ApplicationUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
@@ -274,6 +465,9 @@ namespace Salik_Bug_Tracker_API.Migrations
 
                     b.Property<int>("Score")
                         .HasColumnType("int");
+
+                    b.Property<string>("speciality")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
@@ -329,6 +523,67 @@ namespace Salik_Bug_Tracker_API.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Salik_Bug_Tracker_API.Models.Bug", b =>
+                {
+                    b.HasOne("Salik_Bug_Tracker_API.Models.ApplicationUser", "UserReportedBy")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("Salik_Bug_Tracker_API.Models.Module", "module")
+                        .WithMany()
+                        .HasForeignKey("moduleId");
+
+                    b.Navigation("UserReportedBy");
+
+                    b.Navigation("module");
+                });
+
+            modelBuilder.Entity("Salik_Bug_Tracker_API.Models.BugDeveloper", b =>
+                {
+                    b.HasOne("Salik_Bug_Tracker_API.Models.ApplicationUser", "user")
+                        .WithMany("bugDevelopers")
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Salik_Bug_Tracker_API.Models.Bug", "bug")
+                        .WithMany("bugDevelopers")
+                        .HasForeignKey("BugId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("bug");
+
+                    b.Navigation("user");
+                });
+
+            modelBuilder.Entity("Salik_Bug_Tracker_API.Models.Module", b =>
+                {
+                    b.HasOne("Salik_Bug_Tracker_API.Models.Project", "project")
+                        .WithMany("modules")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("project");
+                });
+
+            modelBuilder.Entity("Salik_Bug_Tracker_API.Models.ModuleUser", b =>
+                {
+                    b.HasOne("Salik_Bug_Tracker_API.Models.ApplicationUser", "user")
+                        .WithMany("moduleUsers")
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Salik_Bug_Tracker_API.Models.Module", "module")
+                        .WithMany("moduleUsers")
+                        .HasForeignKey("ModuleId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("module");
+
+                    b.Navigation("user");
+                });
+
             modelBuilder.Entity("Salik_Bug_Tracker_API.Models.RefreshToken", b =>
                 {
                     b.HasOne("Salik_Bug_Tracker_API.Models.ApplicationUser", "User")
@@ -338,6 +593,39 @@ namespace Salik_Bug_Tracker_API.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Salik_Bug_Tracker_API.Models.Skill", b =>
+                {
+                    b.HasOne("Salik_Bug_Tracker_API.Models.ApplicationUser", "user")
+                        .WithMany("skills")
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.Navigation("user");
+                });
+
+            modelBuilder.Entity("Salik_Bug_Tracker_API.Models.Bug", b =>
+                {
+                    b.Navigation("bugDevelopers");
+                });
+
+            modelBuilder.Entity("Salik_Bug_Tracker_API.Models.Module", b =>
+                {
+                    b.Navigation("moduleUsers");
+                });
+
+            modelBuilder.Entity("Salik_Bug_Tracker_API.Models.Project", b =>
+                {
+                    b.Navigation("modules");
+                });
+
+            modelBuilder.Entity("Salik_Bug_Tracker_API.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("bugDevelopers");
+
+                    b.Navigation("moduleUsers");
+
+                    b.Navigation("skills");
                 });
 #pragma warning restore 612, 618
         }

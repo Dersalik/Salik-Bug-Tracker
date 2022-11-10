@@ -11,5 +11,7 @@ namespace Salik_Bug_Tracker_API.Models
         public string? speciality { get; set; }
         public IEnumerable<Skill>? skills { get; set; }
         public IEnumerable<ModuleUser>? moduleUsers { get; set; }
+        public IEnumerable<BugDeveloper>? bugDevelopers { get; set; }
+
     }
 }
