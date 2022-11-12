@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Salik_Bug_Tracker_API.Data;
+using Salik_Bug_Tracker_API.Data.Repository.IRepository;
+using Salik_Bug_Tracker_API.Data.Repository;
 using Salik_Bug_Tracker_API.Models;
 using System;
 using System.Text;
@@ -13,6 +15,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var tokenValidationParameters = new TokenValidationParameters()
 {
