@@ -23,9 +23,9 @@ namespace Salik_Bug_Tracker_API.Data.Repository
 
         public async Task<IEnumerable<T>> GetAll()
         {
-            IQueryable<T> query = dbSet;
+            
 
-            return await query.ToListAsync();
+            return await dbSet.ToListAsync();
         }
 
         public async Task<T> GetFirstOrDefault(Expression<Func<T, bool>> filter)

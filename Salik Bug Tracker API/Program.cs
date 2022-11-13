@@ -9,6 +9,7 @@ using Salik_Bug_Tracker_API.Data.Repository;
 using Salik_Bug_Tracker_API.Models;
 using System;
 using System.Text;
+using Salik_Bug_Tracker_API.Models.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -56,7 +57,7 @@ builder.Services.AddSwaggerGen(C =>
 {
     C.SwaggerDoc("v1", new OpenApiInfo { Title = "SalikBugTracker.API", Version = "v1" });
 });
-
+builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 var app = builder.Build();
 
 await EnsureDb(app.Services, app.Logger);
