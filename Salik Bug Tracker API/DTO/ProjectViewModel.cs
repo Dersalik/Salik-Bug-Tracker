@@ -1,13 +1,9 @@
-﻿using Salik_Bug_Tracker_API.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Salik_Bug_Tracker_API.DTO
 {
-    public class ModuleDTO
+    public class ProjectViewModel
     {
-        public int Id { get; set; }
-
-        [Required]
         public string? Name { get; set; }
         [Required]
         public string? Description { get; set; }

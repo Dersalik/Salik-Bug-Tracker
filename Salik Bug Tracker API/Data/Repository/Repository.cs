@@ -15,7 +15,7 @@ namespace Salik_Bug_Tracker_API.Data.Repository
             this.dbSet = _db.Set<T>();
 
         }
-        public async void Add(T entity)
+        public async Task Add(T entity)
         {
 
             await dbSet.AddAsync(entity);
