@@ -5,7 +5,9 @@ namespace Salik_Bug_Tracker_API.DTO
 {
     public class ProjectDTO
     {
+        [Required]
         public int Id { get; set; }
+        [Required]
         public string? ProjectName { get; set; }
         [Required]
         public string? Description { get; set; }

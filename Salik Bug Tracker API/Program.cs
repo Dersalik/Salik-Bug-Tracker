@@ -10,6 +10,9 @@ using Salik_Bug_Tracker_API.Models;
 using System;
 using System.Text;
 using Salik_Bug_Tracker_API.Models.Helpers;
+using Salik_Bug_Tracker_API;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -48,9 +51,16 @@ builder.Services.AddAuthentication(options =>
  options.SaveToken = true;
  options.RequireHttpsMetadata = false;
  options.TokenValidationParameters = tokenValidationParameters;
+
+    
 });
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+{
+    options.InputFormatters.Insert(0, MyJPIF.GetJsonPatchInputFormatter());
+
+})
+.AddNewtonsoftJson();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(C =>
@@ -84,7 +94,7 @@ AppDbInitializer.SeedRolesToDb(app).Wait();
 
 app.Run();
 
-async Task EnsureDb(IServiceProvider services, ILogger logger)
+async Task EnsureDb(IServiceProvider services, Microsoft.Extensions.Logging.ILogger logger)
 {
     using var db = services.CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>();
     if (db.Database.IsRelational())

@@ -21,6 +21,8 @@ namespace Salik_Bug_Tracker_API.Data.Repository
             await dbSet.AddAsync(entity);
         }
 
+       
+
         public async Task<IEnumerable<T>> GetAll()
         {
             
@@ -30,9 +32,8 @@ namespace Salik_Bug_Tracker_API.Data.Repository
 
         public async Task<T> GetFirstOrDefault(Expression<Func<T, bool>> filter)
         {
-            IQueryable<T> query = dbSet;
-            query = query.Where(filter);
-            return await query.FirstOrDefaultAsync();
+            
+            return await dbSet.FirstOrDefaultAsync(filter);
         }
 
         public void Remove(T entity)

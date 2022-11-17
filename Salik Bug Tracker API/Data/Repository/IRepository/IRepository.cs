@@ -12,6 +12,5 @@ namespace Salik_Bug_Tracker_API.Data.Repository.IRepository
         void RemoveRange(IEnumerable<T> entity);
         void UpdateEntity(T entity);
 
-
     }
 }
