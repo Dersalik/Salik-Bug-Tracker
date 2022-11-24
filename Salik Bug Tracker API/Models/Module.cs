@@ -14,7 +14,7 @@ namespace Salik_Bug_Tracker_API.Models
         public DateTime ActualEndDate { get; set; }
         public Project? project { get; set; }
         public int ProjectId { get; set; }
-        public IEnumerable<ModuleUser>? moduleUsers { get; set; }
+        public List<ModuleUser>? moduleUsers { get; set; }
 
     }
 }

@@ -13,7 +13,7 @@ namespace Salik_Bug_Tracker_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProjectController : ControllerBase
+    public class ProjectsController : ControllerBase
     {
         private IMapper Mapper
         {
@@ -22,7 +22,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         private IUnitOfWork _unitOfWork { get; }
         const int maxProjectPageSize = 14;
 
-        public ProjectController(IMapper mapper, IUnitOfWork unitOfWork)
+        public ProjectsController(IMapper mapper, IUnitOfWork unitOfWork)
         {
             this.Mapper = mapper;
             this._unitOfWork = unitOfWork;

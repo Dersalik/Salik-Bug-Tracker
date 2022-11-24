@@ -47,5 +47,30 @@ namespace Salik_Bug_Tracker_API.Data.Repository
             return (collectionsToReturn,paginationMetadata);
 
         }
+
+        public async Task<IEnumerable<Module>> getModulesOfProject(int ProjectId)
+        {
+            return await _db.modules.Where(d => d.ProjectId == ProjectId).ToListAsync();
+        }
+
+        public async Task<Module> getParticularModuleOfProject(int ProjectId,int ModuleId)
+        {
+            return await _db.modules.FirstOrDefaultAsync(d => d.ProjectId == ProjectId && d.Id == ModuleId);
+        }
+
+        public async Task<Project> GetProjectWithModules(int Id)
+        {
+            return await _db.projects.Include(d => d.modules).FirstOrDefaultAsync(Project=> Project.Id == Id);
+        }
+
+        public async Task AddNewModuleToProject(int ProjectId, Module module)
+        {
+            var Project = await GetProjectWithModules(ProjectId);
+            
+            if (Project != null)
+            {
+                Project.modules.Add(module);
+            }
+        }
     }
 }

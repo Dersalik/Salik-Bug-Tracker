@@ -14,7 +14,7 @@
         public string? IssueSummary { get; set; }
         public string? Status { get; set; }
         public string? Priority { get; set; }
-        public IEnumerable<BugDeveloper>? bugDevelopers { get; set; }
+        public List<BugDeveloper>? bugDevelopers { get; set; }
     }
 
     public class Priorities
