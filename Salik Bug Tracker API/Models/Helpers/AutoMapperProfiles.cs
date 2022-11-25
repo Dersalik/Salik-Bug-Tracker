@@ -46,7 +46,12 @@ namespace Salik_Bug_Tracker_API.Models.Helpers
               .ForMember(dest => dest.TargetEndDate, opt => opt.MapFrom(src => src.TargetEndDate))
               .ReverseMap();
 
-
+            CreateMap<ModuleForUpdateDTO, Module>().ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+             .ForMember(dest => dest.Id, opt => opt.Ignore())
+             .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
+             .ForMember(dest => dest.DateAdded, opt => opt.MapFrom(src => src.DateAdded))
+             .ForMember(dest => dest.TargetEndDate, opt => opt.MapFrom(src => src.TargetEndDate))
+             .ReverseMap();
 
 
 

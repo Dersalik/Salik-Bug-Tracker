@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Salik_Bug_Tracker_API.Data.Repository.IRepository;
 using Salik_Bug_Tracker_API.DTO;
 using Salik_Bug_Tracker_API.Models;
+using System.Text.Json;
 
 namespace Salik_Bug_Tracker_API.Controllers
 {
@@ -26,20 +28,20 @@ namespace Salik_Bug_Tracker_API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ModuleDTO>>> GetModules(int ProjectId)
         {
-             
-            bool IsProjectAvailable=await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);
 
-            if(!IsProjectAvailable)
+            bool IsProjectAvailable = await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);
+
+            if (!IsProjectAvailable)
             {
-               return NotFound();
+                return NotFound();
             }
 
-            var modulesOfProject=await _unitOfWork.projectRepository.getModulesOfProject(ProjectId);
+            var modulesOfProject = await _unitOfWork.projectRepository.getModulesOfProject(ProjectId);
 
             return Ok(Mapper.Map<ModuleDTO>(modulesOfProject));
         }
 
-        [HttpGet("{ModuleId}",Name = "GetModule")]
+        [HttpGet("{ModuleId}", Name = "GetModule")]
         public async Task<ActionResult<ModuleDTO>> GetModule(int ProjectId, int ModuleId)
         {
             bool IsProjectAvailable = await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);
@@ -49,14 +51,14 @@ namespace Salik_Bug_Tracker_API.Controllers
                 return NotFound();
             }
 
-            var Module = _unitOfWork.projectRepository.getParticularModuleOfProject(ProjectId, ModuleId);
+            var Module = await _unitOfWork.projectRepository.getParticularModuleOfProject(ProjectId, ModuleId);
 
-            if(Module == null)
+            if (Module == null)
             {
                 return NotFound();
             }
-
-            return Ok(Mapper.Map<ModuleDTO>(Module));
+            var result = Mapper.Map<ModuleDTO>(Module);
+            return Ok(result);
         }
 
         [HttpPost]  
@@ -79,5 +81,85 @@ namespace Salik_Bug_Tracker_API.Controllers
             return CreatedAtRoute("GetModule", new { ProjectId = ProjectId, ModuleId = CreatedModuleToReturn.Id },CreatedModuleToReturn);
         }
 
+        [HttpPut("{ModuleId}")]
+        public async Task<ActionResult> UpdateModule(int ProjectId,int ModuleId,ModuleForUpdateDTO module)
+        {
+            bool IsProjectAvailable = await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);
+
+            if (!IsProjectAvailable)
+            {
+                return NotFound();
+            }
+
+            var ModuleEntity=await _unitOfWork.projectRepository.getParticularModuleOfProject(ProjectId,ModuleId);
+
+            if (ModuleEntity == null)
+            {
+                return NotFound();
+            }
+
+            Mapper.Map(module, ModuleEntity);
+            await _unitOfWork.Save();
+
+            return NoContent();
+        }
+
+        [HttpPatch("{ModuleId}")]
+        public async Task<ActionResult> PartiallyUpdateModule(int ProjectId,int ModuleId, [FromBody] JsonPatchDocument<ModuleForUpdateDTO> patchDocument)
+        {
+            bool IsProjectAvailable = await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);
+
+            if (!IsProjectAvailable)
+            {
+                return NotFound();
+            }
+
+            var ModuleEntity = await _unitOfWork.projectRepository.getParticularModuleOfProject(ProjectId, ModuleId);
+
+            if (ModuleEntity == null)
+            {
+                return NotFound();
+            }
+
+            var moduleToPacth=Mapper.Map<ModuleForUpdateDTO>(ModuleEntity);
+
+            patchDocument.ApplyTo(moduleToPacth,ModelState);
+
+            if(!ModelState.IsValid) { 
+            return BadRequest(ModelState);
+            }
+
+            if (!TryValidateModel(moduleToPacth))
+            {
+                return BadRequest(ModelState);
+            }
+            Mapper.Map(moduleToPacth, ModuleEntity);
+            await _unitOfWork.Save();
+            
+            return NoContent();
+
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult> DeleteModule(int ProjectId,int ModuleId)
+        {
+            bool IsProjectAvailable = await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);
+
+            if (!IsProjectAvailable)
+            {
+                return NotFound();
+            }
+
+            var ModuleEntity = await _unitOfWork.projectRepository.getParticularModuleOfProject(ProjectId, ModuleId);
+
+            if (ModuleEntity == null)
+            {
+                return NotFound();
+            }
+
+            _unitOfWork.moduleRepository.Remove(ModuleEntity);
+            await _unitOfWork.Save();
+            return NoContent();
+        }
     }
 }
