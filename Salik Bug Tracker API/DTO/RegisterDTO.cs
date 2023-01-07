@@ -22,7 +22,5 @@ namespace Salik_Bug_Tracker_API.DTO
         public string ConfirmPassword { get; set; }
         [Required]
         public string? Name { get; set; }
-        [Required]
-        public string Role { get; set; }
     }
 }

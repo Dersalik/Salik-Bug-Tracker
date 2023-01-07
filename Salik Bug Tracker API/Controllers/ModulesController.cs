@@ -26,6 +26,8 @@ namespace Salik_Bug_Tracker_API.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IEnumerable<ModuleDTO>>> GetModules(int ProjectId)
         {
 
@@ -38,10 +40,12 @@ namespace Salik_Bug_Tracker_API.Controllers
 
             var modulesOfProject = await _unitOfWork.projectRepository.getModulesOfProject(ProjectId);
 
-            return Ok(Mapper.Map<ModuleDTO>(modulesOfProject));
+            return Ok(Mapper.Map<IEnumerable<ModuleDTO>>(modulesOfProject));
         }
 
         [HttpGet("{ModuleId}", Name = "GetModule")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<ModuleDTO>> GetModule(int ProjectId, int ModuleId)
         {
             bool IsProjectAvailable = await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);
@@ -61,7 +65,9 @@ namespace Salik_Bug_Tracker_API.Controllers
             return Ok(result);
         }
 
-        [HttpPost]  
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<ModuleDTO>> CreateModule(int ProjectId,ModuleForCreationDTO Module)
         {
             bool IsProjectAvailable = await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);
@@ -82,6 +88,8 @@ namespace Salik_Bug_Tracker_API.Controllers
         }
 
         [HttpPut("{ModuleId}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> UpdateModule(int ProjectId,int ModuleId,ModuleForUpdateDTO module)
         {
             bool IsProjectAvailable = await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);
@@ -105,6 +113,9 @@ namespace Salik_Bug_Tracker_API.Controllers
         }
 
         [HttpPatch("{ModuleId}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> PartiallyUpdateModule(int ProjectId,int ModuleId, [FromBody] JsonPatchDocument<ModuleForUpdateDTO> patchDocument)
         {
             bool IsProjectAvailable = await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);
@@ -141,6 +152,8 @@ namespace Salik_Bug_Tracker_API.Controllers
         }
 
         [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> DeleteModule(int ProjectId,int ModuleId)
         {
             bool IsProjectAvailable = await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);

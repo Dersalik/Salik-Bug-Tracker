@@ -18,6 +18,9 @@ namespace Salik_Bug_Tracker_API.Data.Repository
             return await _db.modules.AnyAsync(d => d.Id == Id);
         }
 
-       
+        public async Task<bool> CheckModuleExists(int Id)
+        {
+            return await _db.modules.AnyAsync(d => d.Id == Id);
+        }
     }
 }
