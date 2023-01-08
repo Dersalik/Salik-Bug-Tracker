@@ -33,5 +33,6 @@ namespace Salik_Bug_Tracker_API.Data.Repository
             return await _db.applicationUsers.Where(u => u.moduleUsers.Select(m => m.ModuleId).Contains(moduleId)).ToListAsync();
 
         }
+       
     }
 }

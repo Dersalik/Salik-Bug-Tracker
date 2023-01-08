@@ -47,6 +47,12 @@ namespace Salik_Bug_Tracker_API.Controllers
             {
                 return NotFound();
             }
+
+            var checkIfDevAlreadyAssigned = await _unitOfWork.moduleUserRepository.checkIfModuleAlreadyAssignedToDev(ModuleId, DeveloperId);
+            if (checkIfDevAlreadyAssigned)
+            {
+                return BadRequest("Dev already assigned");
+            }
             var ModuleToAssignDevTo = await _unitOfWork.moduleRepository.GetFirstOrDefault(d => d.Id == ModuleId);
             ModuleUser newModuleUser=new ModuleUser { user= devToAssignToModule, module= ModuleToAssignDevTo };
             
@@ -82,10 +88,15 @@ namespace Salik_Bug_Tracker_API.Controllers
             {
                 return NotFound();
             }
-            var ModuleToAssignDevTo = await _unitOfWork.moduleRepository.GetFirstOrDefault(d => d.Id == ModuleId);
+            var checkIfDevAlreadyAssigned = await _unitOfWork.moduleUserRepository.checkIfModuleAlreadyAssignedToDev(ModuleId, DeveloperId);
+            if (!checkIfDevAlreadyAssigned)
+            {
+                return BadRequest("Dev is not assigned, therefore cant be unassigned");
+            }
 
            var ModuleUserToDelete= await _unitOfWork.moduleUserRepository.GetFirstOrDefault(d=>d.ModuleId==ModuleId && d.ApplicationUserId==DeveloperId );
-             _unitOfWork.moduleUserRepository.Remove(ModuleUserToDelete);
+           
+            _unitOfWork.moduleUserRepository.Remove(ModuleUserToDelete);
             await _unitOfWork.Save();
 
             return NoContent();
