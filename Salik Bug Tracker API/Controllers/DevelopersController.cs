@@ -24,9 +24,9 @@ namespace Salik_Bug_Tracker_API.Controllers
         }
         
         [HttpPost("{DeveloperId}")]
-        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<ModuleUser>> AssignDeveloper(int ProjectId,int ModuleId, string DeveloperId)
+        public async Task<ActionResult> AssignDeveloper(int ProjectId,int ModuleId, string DeveloperId)
         {
             bool IsProjectAvailable = await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);
 
@@ -54,7 +54,7 @@ namespace Salik_Bug_Tracker_API.Controllers
 
             await _unitOfWork.Save();
 
-            return Ok(newModuleUser);
+            return NoContent();
 
         }
 
@@ -78,7 +78,7 @@ namespace Salik_Bug_Tracker_API.Controllers
 
             var devToAssignToModule = await _unitOfWork.userRepository.GetFirstOrDefaultWithAllAttributes(d => d.Id == DeveloperId);
 
-            if (devToAssignToModule != null)
+            if (devToAssignToModule == null)
             {
                 return NotFound();
             }
@@ -93,14 +93,11 @@ namespace Salik_Bug_Tracker_API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ApplicationUser>> getDevs(int ModuleId)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<UserDTO>>> getDevs(int ModuleId)
         {
-        
-
-
                 var result = await _unitOfWork.userRepository.getDevsOfOneModule(ModuleId);
-                return Ok(result);
-          
+                return Ok(Mapper.Map<List<UserDTO>>(result));
         }
 
     }

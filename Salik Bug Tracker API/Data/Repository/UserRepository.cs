@@ -2,6 +2,7 @@
 using Salik_Bug_Tracker_API.Data.Repository.IRepository;
 using Salik_Bug_Tracker_API.Models;
 using System.Linq.Expressions;
+using System.Reflection;
 
 namespace Salik_Bug_Tracker_API.Data.Repository
 {
@@ -27,8 +28,10 @@ namespace Salik_Bug_Tracker_API.Data.Repository
 
         public async Task<IEnumerable<ApplicationUser>> getDevsOfOneModule(int moduleId)
         {
-           var result= await _db.ModuleUsers.FirstOrDefaultAsync(d=> d.Id == moduleId);  
-            return await _db.applicationUsers.Where(d => d.moduleUsers.Contains(result)).ToListAsync();
+           var result= await _db.modules.AsNoTracking().FirstOrDefaultAsync(d=> d.Id == moduleId);
+
+            return await _db.applicationUsers.Where(u => u.moduleUsers.Select(m => m.ModuleId).Contains(moduleId)).ToListAsync();
+
         }
     }
 }

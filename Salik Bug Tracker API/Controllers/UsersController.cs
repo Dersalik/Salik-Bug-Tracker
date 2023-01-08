@@ -25,7 +25,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         [HttpGet("{DeveloperId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<ApplicationUser>> getDeveloper(string DeveloperId)
+        public async Task<ActionResult<UserDTO>> getDeveloper(string DeveloperId)
         {
             var DevExists = await _unitOfWork.userRepository.CheckDevExists(DeveloperId);
 
@@ -34,16 +34,16 @@ namespace Salik_Bug_Tracker_API.Controllers
                 return NotFound(DeveloperId);
             }
             var result = await _unitOfWork.userRepository.GetFirstOrDefault(d => d.Id == DeveloperId);
-            return Ok(result);
+            return Ok(Mapper.Map<UserDTO>(result));
         }
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<ApplicationUser>> getDeveloper()
+        public async Task<ActionResult<List<UserDTO>>> getDeveloper()
         {
 
            
             var result = await _unitOfWork.userRepository.GetAll();
-            return Ok(result);
+            return Ok(Mapper.Map<List<UserDTO>>(result));
         }
     }
 }
