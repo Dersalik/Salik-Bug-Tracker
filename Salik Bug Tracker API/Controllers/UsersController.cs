@@ -45,5 +45,7 @@ namespace Salik_Bug_Tracker_API.Controllers
             var result = await _unitOfWork.userRepository.GetAll();
             return Ok(Mapper.Map<List<UserDTO>>(result));
         }
+
+        
     }
 }

@@ -9,7 +9,7 @@ using System.Text.Json;
 
 namespace Salik_Bug_Tracker_API.Controllers
 {
-    [Route("api/[controller]/Projects/{ProjectId}/Modules")]
+    [Route("api/Projects/{ProjectId}/Modules")]
     [ApiController]
     public class ModulesController : ControllerBase
     {

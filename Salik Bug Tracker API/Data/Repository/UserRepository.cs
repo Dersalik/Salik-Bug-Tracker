@@ -33,6 +33,10 @@ namespace Salik_Bug_Tracker_API.Data.Repository
             return await _db.applicationUsers.Where(u => u.moduleUsers.Select(m => m.ModuleId).Contains(moduleId)).ToListAsync();
 
         }
-       
+        public async Task<ApplicationUser> GetFirstOrDefaultWithSkills (Expression<Func<ApplicationUser, bool>> filter)
+        {
+
+            return await _db.applicationUsers.Include(d => d.skills).FirstOrDefaultAsync(filter);
+        }
     }
 }
