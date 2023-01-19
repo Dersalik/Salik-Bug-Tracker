@@ -60,7 +60,15 @@ namespace Salik_Bug_Tracker_API.Models.Helpers
              .ForMember(dest => dest.Score, opt => opt.MapFrom(src => src.Score)).ReverseMap();
 
             CreateMap<Skill, SkillDTO>().ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
-                .ForMember(dest => dest.Level, opt => opt.MapFrom(src => src.Level));
+                .ForMember(dest => dest.Level, opt => opt.MapFrom(src => src.Level))
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id));
+
+            CreateMap<Skill, SkillDTOForUpdate>().ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+              .ForMember(dest => dest.Level, opt => opt.MapFrom(src => src.Level)).ReverseMap();
+
+            CreateMap<Skill, SkillDTOForCreation>().ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+             .ForMember(dest => dest.Level, opt => opt.MapFrom(src => src.Level)).ReverseMap();
+
         }
     }
 }

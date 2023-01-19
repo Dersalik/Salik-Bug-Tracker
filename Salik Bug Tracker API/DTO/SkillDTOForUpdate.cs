@@ -2,9 +2,8 @@
 
 namespace Salik_Bug_Tracker_API.DTO
 {
-    public class SkillDTO
+    public class SkillDTOForUpdate
     {
-        public int Id { get; set; }
         [Required]
         public string? Name { get; set; }
         [Required]

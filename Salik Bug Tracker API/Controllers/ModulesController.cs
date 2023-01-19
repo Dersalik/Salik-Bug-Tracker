@@ -76,7 +76,10 @@ namespace Salik_Bug_Tracker_API.Controllers
             {
                 return NotFound();
             }
-
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Please, provide all the required fields");
+            }
             var ModuleToAdd = Mapper.Map<Module>(Module);
 
             await _unitOfWork.projectRepository.AddNewModuleToProject(ProjectId, ModuleToAdd);
@@ -98,7 +101,10 @@ namespace Salik_Bug_Tracker_API.Controllers
             {
                 return NotFound();
             }
-
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Please, provide all the required fields");
+            }
             var ModuleEntity=await _unitOfWork.projectRepository.getParticularModuleOfProject(ProjectId,ModuleId);
 
             if (ModuleEntity == null)
@@ -124,7 +130,10 @@ namespace Salik_Bug_Tracker_API.Controllers
             {
                 return NotFound();
             }
-
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Please, provide all the required fields");
+            }
             var ModuleEntity = await _unitOfWork.projectRepository.getParticularModuleOfProject(ProjectId, ModuleId);
 
             if (ModuleEntity == null)

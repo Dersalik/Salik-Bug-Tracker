@@ -1,9 +1,12 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Salik_Bug_Tracker_API.Data.Repository.IRepository;
 using Salik_Bug_Tracker_API.DTO;
 using Salik_Bug_Tracker_API.Models;
+using AutoMapper;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Salik_Bug_Tracker_API.Controllers
 {
@@ -11,41 +14,52 @@ namespace Salik_Bug_Tracker_API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private IMapper Mapper
-        {
-            get;
-        }
-        private IUnitOfWork _unitOfWork { get; }
+        private readonly IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
 
         public UsersController(IMapper mapper, IUnitOfWork unitOfWork)
         {
-            Mapper = mapper;
+            _mapper = mapper;
             _unitOfWork = unitOfWork;
         }
-        [HttpGet("{DeveloperId}")]
+
+        [HttpGet("{developerId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<UserDTO>> getDeveloper(string DeveloperId)
+        public async Task<ActionResult<UserDTO>> GetDeveloper(string developerId)
         {
-            var DevExists = await _unitOfWork.userRepository.CheckDevExists(DeveloperId);
-
-            if (!DevExists)
+            try
             {
-                return NotFound(DeveloperId);
+                var devExists = await _unitOfWork.userRepository.CheckDevExists(developerId);
+
+                if (!devExists)
+                {
+                    return NotFound(developerId);
+                }
+
+                var result = await _unitOfWork.userRepository.GetFirstOrDefault(d => d.Id == developerId);
+                return Ok(_mapper.Map<UserDTO>(result));
             }
-            var result = await _unitOfWork.userRepository.GetFirstOrDefault(d => d.Id == DeveloperId);
-            return Ok(Mapper.Map<UserDTO>(result));
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred: {ex.Message}");
+            }
         }
+
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<List<UserDTO>>> getDeveloper()
+        public async Task<ActionResult<List<UserDTO>>> GetDevelopers()
         {
-
-           
-            var result = await _unitOfWork.userRepository.GetAll();
-            return Ok(Mapper.Map<List<UserDTO>>(result));
+            try
+            {
+                var result = await _unitOfWork.userRepository.GetAll();
+                return Ok(_mapper.Map<List<UserDTO>>(result));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred: {ex.Message}");
+            }
         }
-
-        
     }
+
 }
