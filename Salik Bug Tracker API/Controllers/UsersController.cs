@@ -4,9 +4,6 @@ using Salik_Bug_Tracker_API.Data.Repository.IRepository;
 using Salik_Bug_Tracker_API.DTO;
 using Salik_Bug_Tracker_API.Models;
 using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Salik_Bug_Tracker_API.Controllers
 {
