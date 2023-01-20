@@ -101,7 +101,7 @@ namespace Salik_Bug_Tracker_API.Controllers
             return Ok(result);
         }
 
-        private async Task<AuthResultDTO> VerifyAndGenerateTokenAsync(TokenRequestDTO tokenRequestVM)
+        private async Task<AuthResultDTO> VerifyAndGenerateTokenAsync([FromBody] TokenRequestDTO tokenRequestVM)
         {
             var jwtTokenHandler = new JwtSecurityTokenHandler();
             var storedToken = await _context.RefreshTokens.FirstOrDefaultAsync(x => x.Token == tokenRequestVM.RefreshToken);
