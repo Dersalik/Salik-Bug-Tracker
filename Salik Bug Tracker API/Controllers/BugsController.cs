@@ -135,7 +135,7 @@ namespace Salik_Bug_Tracker_API.Controllers
             }
         }
         [HttpPatch("{BugId}")]
-        public async Task<IActionResult> UpdateBug(int BugId, int ProjectId, int ModuleId, JsonPatchDocument<BugDTOForUpdate> patchDoc)
+        public async Task<ActionResult> UpdateBug(int BugId, int ProjectId, int ModuleId, JsonPatchDocument<BugDTOForUpdate> patchDoc)
         {
             try
             {
