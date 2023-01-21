@@ -25,6 +25,8 @@ namespace Salik_Bug_Tracker_API.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<List<BugDTO>>> GetBugs(int ModuleId)
         {
             try
@@ -49,6 +51,8 @@ namespace Salik_Bug_Tracker_API.Controllers
             }
         }
         [HttpGet("{BugId}",Name = "GetBug")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<BugDTO>> GetBug(int BugId, int ProjectId,  int ModuleId)
         {
             try {var bug = await _unitOfWork.bugRepository
@@ -72,6 +76,8 @@ namespace Salik_Bug_Tracker_API.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<BugDTO>> CreateBug(int ProjectId, int ModuleId,[FromBody] BugDTOForCreation bugDTO)
         {
             try
@@ -101,6 +107,8 @@ namespace Salik_Bug_Tracker_API.Controllers
             }
         }
         [HttpPut("{BugId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> UpdateBug(int BugId, int ProjectId, int ModuleId, BugDTOForUpdate bugDTO)
         {
             try
