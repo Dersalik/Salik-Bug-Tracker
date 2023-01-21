@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Salik_Bug_Tracker_API.Data.Repository.IRepository;
@@ -122,6 +123,38 @@ namespace Salik_Bug_Tracker_API.Controllers
                 if (bug == null)
                 {
                     return NotFound("Bug not found");
+                }
+                Mapper.Map(bugDTO, bug);
+                _unitOfWork.bugRepository.UpdateEntity(bug);
+                await _unitOfWork.Save();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating bug in the database");
+            }
+        }
+        [HttpPatch("{BugId}")]
+        public async Task<IActionResult> UpdateBug(int BugId, int ProjectId, int ModuleId, JsonPatchDocument<BugDTOForUpdate> patchDoc)
+        {
+            try
+            {
+                bool IsModuleAvailable = await _unitOfWork.moduleRepository.CheckModuleExists(ModuleId);
+                if (!IsModuleAvailable)
+                {
+                    return NotFound();
+                }
+                var bug = await _unitOfWork.bugRepository.GetFirstOrDefault(b => b.Id == BugId);
+                if (bug == null)
+                {
+                    return NotFound("Bug not found");
+                }
+                var bugDTO = Mapper.Map<BugDTOForUpdate>(bug);
+                patchDoc.ApplyTo(bugDTO, ModelState);
+                TryValidateModel(bugDTO);
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
                 }
                 Mapper.Map(bugDTO, bug);
                 _unitOfWork.bugRepository.UpdateEntity(bug);
