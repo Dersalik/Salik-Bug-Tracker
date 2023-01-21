@@ -100,6 +100,30 @@ namespace Salik_Bug_Tracker_API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error saving data to the database");
             }
         }
-
+        [HttpPut("{BugId}")]
+        public async Task<IActionResult> UpdateBug(int BugId, int ProjectId, int ModuleId, BugDTOForUpdate bugDTO)
+        {
+            try
+            {
+                bool IsModuleAvailable = await _unitOfWork.moduleRepository.CheckModuleExists(ModuleId);
+                if (!IsModuleAvailable)
+                {
+                    return NotFound();
+                }
+                var bug = await _unitOfWork.bugRepository.GetFirstOrDefault(b => b.Id == BugId);
+                if (bug == null)
+                {
+                    return NotFound("Bug not found");
+                }
+                Mapper.Map(bugDTO, bug);
+                _unitOfWork.bugRepository.UpdateEntity(bug);
+                await _unitOfWork.Save();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating bug in the database");
+            }
+        }
     }
 }
