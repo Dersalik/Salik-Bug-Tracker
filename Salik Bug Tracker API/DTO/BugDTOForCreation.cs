@@ -4,6 +4,7 @@ namespace Salik_Bug_Tracker_API.DTO
 {
     public class BugDTOForCreation
     {
+        public string? ApplicationUserId { get; set; }
         public string? Description { get; set; }
         public DateTime? CreatedDate { get; set; }
         public DateTime? DueDate { get; set; }
