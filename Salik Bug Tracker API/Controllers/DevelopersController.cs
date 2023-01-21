@@ -28,7 +28,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> AssignDeveloper(int ProjectId,int ModuleId, string DeveloperId)
         {
-            bool IsProjectAvailable = await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);
+            try {   bool IsProjectAvailable = await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);
 
             if (!IsProjectAvailable)
             {
@@ -60,7 +60,13 @@ namespace Salik_Bug_Tracker_API.Controllers
 
             await _unitOfWork.Save();
 
-            return NoContent();
+            return NoContent(); 
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data in the database");
+            }
+
 
         }
 
@@ -69,7 +75,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> UnassignDeveloper(int ProjectId, int ModuleId, string DeveloperId)
         {
-            bool IsProjectAvailable = await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);
+            try { bool IsProjectAvailable = await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);
 
             if (!IsProjectAvailable)
             {
@@ -99,7 +105,13 @@ namespace Salik_Bug_Tracker_API.Controllers
             _unitOfWork.moduleUserRepository.Remove(ModuleUserToDelete);
             await _unitOfWork.Save();
 
-            return NoContent();
+            return NoContent(); 
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data in the database");
+            }
+
 
         }
 
@@ -107,8 +119,15 @@ namespace Salik_Bug_Tracker_API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<List<UserDTO>>> getDevs(int ModuleId)
         {
+            try {      
                 var result = await _unitOfWork.userRepository.getDevsOfOneModule(ModuleId);
-                return Ok(Mapper.Map<List<UserDTO>>(result));
+                return Ok(Mapper.Map<List<UserDTO>>(result)); 
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retriving data in the database");
+            }
+
         }
 
     }

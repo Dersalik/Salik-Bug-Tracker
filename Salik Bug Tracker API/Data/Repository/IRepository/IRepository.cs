@@ -11,6 +11,7 @@ namespace Salik_Bug_Tracker_API.Data.Repository.IRepository
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entity);
         void UpdateEntity(T entity);
+        Task<IEnumerable<T>> Where(Expression<Func<T, bool>> predicate);
 
     }
 }

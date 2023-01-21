@@ -39,7 +39,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Register([FromBody] RegisterDTO model)
         {
-            if (!ModelState.IsValid)
+            try { if (!ModelState.IsValid)
             {
                 return BadRequest("Please, provide all the required fields");
             }
@@ -68,14 +68,20 @@ namespace Salik_Bug_Tracker_API.Controllers
                    
                 return Ok("User created");
             }
-            return BadRequest("User could not be created");
+            return BadRequest("User could not be created"); 
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error");
+            }
+
         }
 
 
         [HttpPost("login-user")]
         public async Task<IActionResult> Login([FromBody] LoginDTO loginVM)
         {
-            if (!ModelState.IsValid)
+            try { if (!ModelState.IsValid)
             {
                 return BadRequest("Please, provide all required fields");
             }
@@ -86,12 +92,19 @@ namespace Salik_Bug_Tracker_API.Controllers
                 var tokenValue = await GenerateJWTTokenAsync(userExists, null);
                 return Ok(tokenValue);
             }
-            return Unauthorized();
+            return Unauthorized(); 
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error");
+            }
         }
 
         [HttpPost("refresh-token")]
         public async Task<IActionResult> RefreshToken([FromBody] TokenRequestDTO tokenRequestVM)
         {
+            try
+            {
             if (!ModelState.IsValid)
             {
                 return BadRequest("Please, provide all required fields");
@@ -99,10 +112,17 @@ namespace Salik_Bug_Tracker_API.Controllers
 
             var result = await VerifyAndGenerateTokenAsync(tokenRequestVM);
             return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error");
+            }
+
         }
 
         private async Task<AuthResultDTO> VerifyAndGenerateTokenAsync([FromBody] TokenRequestDTO tokenRequestVM)
         {
+        
             var jwtTokenHandler = new JwtSecurityTokenHandler();
             var storedToken = await _context.RefreshTokens.FirstOrDefaultAsync(x => x.Token == tokenRequestVM.RefreshToken);
             var dbUser = await _userManager.FindByIdAsync(storedToken.UserId);

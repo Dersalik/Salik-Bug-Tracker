@@ -30,8 +30,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IEnumerable<ModuleDTO>>> GetModules(int ProjectId)
         {
-
-            bool IsProjectAvailable = await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);
+            try {  bool IsProjectAvailable = await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);
 
             if (!IsProjectAvailable)
             {
@@ -40,7 +39,13 @@ namespace Salik_Bug_Tracker_API.Controllers
 
             var modulesOfProject = await _unitOfWork.projectRepository.getModulesOfProject(ProjectId);
 
-            return Ok(Mapper.Map<IEnumerable<ModuleDTO>>(modulesOfProject));
+            return Ok(Mapper.Map<IEnumerable<ModuleDTO>>(modulesOfProject)); 
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retriving data in the database");
+            }
+
         }
 
         [HttpGet("{ModuleId}", Name = "GetModule")]
@@ -48,7 +53,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<ModuleDTO>> GetModule(int ProjectId, int ModuleId)
         {
-            bool IsProjectAvailable = await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);
+            try { bool IsProjectAvailable = await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);
 
             if (!IsProjectAvailable)
             {
@@ -63,6 +68,12 @@ namespace Salik_Bug_Tracker_API.Controllers
             }
             var result = Mapper.Map<ModuleDTO>(Module);
             return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retriving data in the database");
+            }
+
         }
 
         [HttpPost]
@@ -70,7 +81,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<ModuleDTO>> CreateModule(int ProjectId, [FromBody] ModuleForCreationDTO Module)
         {
-            bool IsProjectAvailable = await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);
+            try {bool IsProjectAvailable = await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);
 
             if (!IsProjectAvailable)
             {
@@ -88,6 +99,11 @@ namespace Salik_Bug_Tracker_API.Controllers
             var CreatedModuleToReturn=Mapper.Map<ModuleDTO>(ModuleToAdd);
 
             return CreatedAtRoute("GetModule", new { ProjectId = ProjectId, ModuleId = CreatedModuleToReturn.Id },CreatedModuleToReturn);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error inserting data in the database");
+            }
         }
 
         [HttpPut("{ModuleId}")]
@@ -95,27 +111,35 @@ namespace Salik_Bug_Tracker_API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> UpdateModule(int ProjectId,int ModuleId, [FromBody] ModuleForUpdateDTO module)
         {
-            bool IsProjectAvailable = await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);
-
-            if (!IsProjectAvailable)
+            try
             {
-                return NotFound();
+
+                bool IsProjectAvailable = await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);
+
+                if (!IsProjectAvailable)
+                {
+                    return NotFound();
+                }
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest("Please, provide all the required fields");
+                }
+                var ModuleEntity = await _unitOfWork.projectRepository.getParticularModuleOfProject(ProjectId, ModuleId);
+
+                if (ModuleEntity == null)
+                {
+                    return NotFound();
+                }
+
+                Mapper.Map(module, ModuleEntity);
+                await _unitOfWork.Save();
+
+                return NoContent();
             }
-            if (!ModelState.IsValid)
+            catch (Exception ex)
             {
-                return BadRequest("Please, provide all the required fields");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data in the database");
             }
-            var ModuleEntity=await _unitOfWork.projectRepository.getParticularModuleOfProject(ProjectId,ModuleId);
-
-            if (ModuleEntity == null)
-            {
-                return NotFound();
-            }
-
-            Mapper.Map(module, ModuleEntity);
-            await _unitOfWork.Save();
-
-            return NoContent();
         }
 
         [HttpPatch("{ModuleId}")]
@@ -124,7 +148,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> PartiallyUpdateModule(int ProjectId,int ModuleId, [FromBody] JsonPatchDocument<ModuleForUpdateDTO> patchDocument)
         {
-            bool IsProjectAvailable = await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);
+            try {bool IsProjectAvailable = await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);
 
             if (!IsProjectAvailable)
             {
@@ -156,7 +180,12 @@ namespace Salik_Bug_Tracker_API.Controllers
             Mapper.Map(moduleToPacth, ModuleEntity);
             await _unitOfWork.Save();
             
-            return NoContent();
+            return NoContent(); 
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data in the database");
+            }
 
         }
 
@@ -165,7 +194,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> DeleteModule(int ProjectId,int ModuleId)
         {
-            bool IsProjectAvailable = await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);
+            try {bool IsProjectAvailable = await _unitOfWork.projectRepository.CheckProjectExists(ProjectId);
 
             if (!IsProjectAvailable)
             {
@@ -181,7 +210,13 @@ namespace Salik_Bug_Tracker_API.Controllers
 
             _unitOfWork.moduleRepository.Remove(ModuleEntity);
             await _unitOfWork.Save();
-            return NoContent();
+            return NoContent(); 
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data in the database");
+            }
+
         }
     }
 }

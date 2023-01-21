@@ -35,6 +35,10 @@ namespace Salik_Bug_Tracker_API.Data.Repository
             
             return await dbSet.FirstOrDefaultAsync(filter);
         }
+        public async Task<IEnumerable<T>> Where(Expression<Func<T, bool>> predicate)
+        {
+            return await dbSet.Where(predicate).ToListAsync();
+        }
 
         public void Remove(T entity)
         {

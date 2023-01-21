@@ -69,6 +69,10 @@ namespace Salik_Bug_Tracker_API.Models.Helpers
             CreateMap<Skill, SkillDTOForCreation>().ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
              .ForMember(dest => dest.Level, opt => opt.MapFrom(src => src.Level)).ReverseMap();
 
+            CreateMap<Bug, BugDTOForCreation>().ReverseMap();
+            CreateMap<Bug, BugDTOForUpdate>().ReverseMap();
+            CreateMap<Bug, BugDTO>().ReverseMap();
+
         }
     }
 }

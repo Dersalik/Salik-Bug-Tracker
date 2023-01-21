@@ -143,7 +143,7 @@ namespace Salik_Bug_Tracker_API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error updatingdata in the database" );
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data in the database" );
             }
 
         }

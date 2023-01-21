@@ -78,7 +78,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult> AddSkill(SkillDTOForCreation Skill, string UserId)
+        public async Task<ActionResult> AddSkill([FromBody] SkillDTOForCreation Skill, string UserId)
         {
             try
             {
@@ -136,7 +136,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult> EditSkill(int SkillId, SkillDTOForUpdate Skill, string UserId)
+        public async Task<ActionResult> EditSkill(int SkillId, [FromBody] SkillDTOForUpdate Skill, string UserId)
         {
             try
             {
