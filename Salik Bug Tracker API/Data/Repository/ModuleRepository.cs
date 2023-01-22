@@ -22,5 +22,13 @@ namespace Salik_Bug_Tracker_API.Data.Repository
         {
             return await _db.modules.AnyAsync(d => d.Id == Id);
         }
+        public async Task<IEnumerable<Module>> GetModulesByDeveloperId(string developerId)
+        {
+            var modules = await _db.modules
+                .Include(m => m.moduleUsers)
+                .Where(m => m.moduleUsers.Any(bd => bd.ApplicationUserId == developerId))
+                .ToListAsync();
+            return modules;
+        }
     }
 }

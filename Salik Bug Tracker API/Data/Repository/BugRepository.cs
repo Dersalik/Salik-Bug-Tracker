@@ -14,6 +14,20 @@ namespace Salik_Bug_Tracker_API.Data.Repository
              _db= db;
         }
 
-       
+        public async Task<IEnumerable<Bug>> GetBugsByDeveloperId(string developerId)
+        {
+            var bugs = await _db.bugs
+            .Include(b => b.bugDevelopers)
+            .Where(b => b.bugDevelopers.Any(bd => bd.ApplicationUserId == developerId))
+            .ToListAsync();
+            return bugs;
+        }
+        public async Task<IEnumerable<Bug>> GetBugsByModuleIdAndDeveloperId(int ModuleId, string developerId)
+        {
+            var bugs = await _db.bugs.Include(b => b.bugDevelopers)
+.Where(b => b.ModulesId == ModuleId && b.bugDevelopers.Any(bd => bd.ApplicationUserId == developerId))
+.ToListAsync();
+            return bugs;
+        }
     }
 }
