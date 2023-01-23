@@ -9,7 +9,8 @@ using System.Text.Json;
 
 namespace Salik_Bug_Tracker_API.Controllers
 {
-    [Route("api/Projects/{ProjectId}/Modules")]
+    [Route("api/v{version:apiVersion}/Projects/{ProjectId}/Modules")]
+    [ApiVersion("1.0")]
     [ApiController]
     public class ModulesController : ControllerBase
     {

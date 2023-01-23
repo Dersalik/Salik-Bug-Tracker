@@ -67,9 +67,11 @@ builder.Services.AddSwaggerGen(C =>
 {
     C.SwaggerDoc("v1", new OpenApiInfo { Title = "SalikBugTracker.API", Version = "v1" });
 });
+builder.Services.AddApiVersioning();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 var app = builder.Build();
 
+app.UseApiVersioning();
 await EnsureDb(app.Services, app.Logger);
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

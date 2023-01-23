@@ -7,7 +7,8 @@ using Salik_Bug_Tracker_API.Models;
 
 namespace Salik_Bug_Tracker_API.Controllers
 {
-    [Route("api/Projects/{ProjectId}/Modules/{ModuleId}/Developers")]
+    [Route("api/v{version:apiVersion}/Projects/{ProjectId}/Modules/{ModuleId}/Developers")]
+    [ApiVersion("1.0")]
     [ApiController]
     public class DevelopersController : ControllerBase
     {

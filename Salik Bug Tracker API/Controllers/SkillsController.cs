@@ -10,7 +10,8 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 namespace Salik_Bug_Tracker_API.Controllers
 {
  
-    [Route("api/Users/{UserId}/Skills")]
+    [Route("api/v{version:apiVersion}/Users/{UserId}/Skills")]
+    [ApiVersion("1.0")]
     [ApiController]
     public class SkillsController : ControllerBase
     {
