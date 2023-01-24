@@ -19,11 +19,13 @@ namespace Salik_Bug_Tracker_API.Controllers
             get;
         }
         private IUnitOfWork _unitOfWork { get; }
+        private readonly ILogger<ModulesController> _logger;
 
-        public ModulesController(IMapper mapper, IUnitOfWork unitOfWork)
+        public ModulesController(IMapper mapper, IUnitOfWork unitOfWork, ILogger<ModulesController> logger)
         {
             Mapper = mapper;
             _unitOfWork = unitOfWork;
+            _logger = logger;
         }
 
         [HttpGet]

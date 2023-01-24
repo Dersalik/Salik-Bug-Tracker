@@ -1,0 +1,234 @@
+2023-01-24 21:30:52.364 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-01-24 21:30:52.391 +03:00 [INF] Ensuring database exists and is up to date at connection string 'Server=(localdb)\MSSQLLocalDB;Database=BugTracker;Trusted_Connection=True'
+2023-01-24 21:30:54.084 +03:00 [INF] Executed DbCommand (42ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-24 21:30:54.159 +03:00 [INF] Executed DbCommand (38ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-24 21:30:54.165 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-24 21:30:54.167 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-24 21:30:54.189 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-01-24 21:30:54.215 +03:00 [INF] No migrations were applied. The database is already up to date.
+2023-01-24 21:30:54.458 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-01-24 21:30:54.463 +03:00 [INF] Ensuring database exists and is up to date at connection string 'Server=(localdb)\MSSQLLocalDB;Database=BugTracker;Trusted_Connection=True'
+2023-01-24 21:30:54.465 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-24 21:30:54.466 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-24 21:30:54.468 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-24 21:30:54.470 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-24 21:30:54.472 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-01-24 21:30:54.474 +03:00 [INF] No migrations were applied. The database is already up to date.
+2023-01-24 21:30:54.513 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-01-24 21:30:54.961 +03:00 [INF] Executed DbCommand (32ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-01-24 21:30:55.019 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-01-24 21:30:55.053 +03:00 [INF] User profile is available. Using 'C:\Users\max\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-01-24 21:30:55.265 +03:00 [INF] Now listening on: https://localhost:7189
+2023-01-24 21:30:55.266 +03:00 [INF] Now listening on: http://localhost:5242
+2023-01-24 21:30:55.267 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-01-24 21:30:55.268 +03:00 [INF] Hosting environment: Development
+2023-01-24 21:30:55.269 +03:00 [INF] Content root path: C:\Users\max\source\Temp\Salik Bug Tracker\Salik Bug Tracker API\
+2023-01-24 21:30:56.455 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7189/swagger/index.html - -
+2023-01-24 21:30:56.810 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7189/swagger/index.html - - - 200 - text/html;charset=utf-8 358.6537ms
+2023-01-24 21:30:56.873 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7189/_vs/browserLink - -
+2023-01-24 21:30:57.123 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7189/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 249.6304ms
+2023-01-24 21:30:57.231 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7189/swagger/v1/swagger.json - -
+2023-01-24 21:30:57.392 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7189/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 161.3768ms
+2023-01-24 21:32:39.850 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-01-24 21:32:39.879 +03:00 [INF] Ensuring database exists and is up to date at connection string 'Server=(localdb)\MSSQLLocalDB;Database=BugTracker;Trusted_Connection=True'
+2023-01-24 21:32:40.318 +03:00 [INF] Executed DbCommand (42ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-24 21:32:40.389 +03:00 [INF] Executed DbCommand (35ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-24 21:32:40.396 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-24 21:32:40.402 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-24 21:32:40.424 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-01-24 21:32:40.447 +03:00 [INF] No migrations were applied. The database is already up to date.
+2023-01-24 21:32:40.628 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-01-24 21:32:40.631 +03:00 [INF] Ensuring database exists and is up to date at connection string 'Server=(localdb)\MSSQLLocalDB;Database=BugTracker;Trusted_Connection=True'
+2023-01-24 21:32:40.633 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-24 21:32:40.635 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-24 21:32:40.637 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-24 21:32:40.639 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-24 21:32:40.641 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-01-24 21:32:40.643 +03:00 [INF] No migrations were applied. The database is already up to date.
+2023-01-24 21:32:40.684 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-01-24 21:32:41.120 +03:00 [INF] Executed DbCommand (32ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-01-24 21:32:41.176 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-01-24 21:32:41.335 +03:00 [INF] Now listening on: https://localhost:7189
+2023-01-24 21:32:41.336 +03:00 [INF] Now listening on: http://localhost:5242
+2023-01-24 21:32:41.336 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-01-24 21:32:41.337 +03:00 [INF] Hosting environment: Development
+2023-01-24 21:32:41.338 +03:00 [INF] Content root path: C:\Users\max\source\Temp\Salik Bug Tracker\Salik Bug Tracker API\
+2023-01-24 21:51:01.501 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-01-24 21:51:01.528 +03:00 [INF] Ensuring database exists and is up to date at connection string 'Server=(localdb)\MSSQLLocalDB;Database=BugTracker;Trusted_Connection=True'
+2023-01-24 21:51:02.746 +03:00 [INF] Executed DbCommand (45ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-24 21:51:02.821 +03:00 [INF] Executed DbCommand (38ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-24 21:51:02.827 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-24 21:51:02.829 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-24 21:51:02.852 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-01-24 21:51:02.875 +03:00 [INF] No migrations were applied. The database is already up to date.
+2023-01-24 21:51:03.087 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-01-24 21:51:03.094 +03:00 [INF] Ensuring database exists and is up to date at connection string 'Server=(localdb)\MSSQLLocalDB;Database=BugTracker;Trusted_Connection=True'
+2023-01-24 21:51:03.096 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-24 21:51:03.098 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-24 21:51:03.100 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-24 21:51:03.102 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-24 21:51:03.105 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-01-24 21:51:03.108 +03:00 [INF] No migrations were applied. The database is already up to date.
+2023-01-24 21:51:03.152 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-01-24 21:51:03.602 +03:00 [INF] Executed DbCommand (33ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-01-24 21:51:03.657 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-01-24 21:51:03.818 +03:00 [INF] Now listening on: https://localhost:7189
+2023-01-24 21:51:03.819 +03:00 [INF] Now listening on: http://localhost:5242
+2023-01-24 21:51:03.820 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-01-24 21:51:03.820 +03:00 [INF] Hosting environment: Development
+2023-01-24 21:51:03.821 +03:00 [INF] Content root path: C:\Users\max\source\Temp\Salik Bug Tracker\Salik Bug Tracker API\
+2023-01-24 22:08:42.510 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-01-24 22:08:42.538 +03:00 [INF] Ensuring database exists and is up to date at connection string 'Server=(localdb)\MSSQLLocalDB;Database=BugTracker;Trusted_Connection=True'
+2023-01-24 22:08:43.906 +03:00 [INF] Executed DbCommand (48ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-24 22:08:43.982 +03:00 [INF] Executed DbCommand (39ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-24 22:08:43.988 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-24 22:08:43.990 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-24 22:08:44.013 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-01-24 22:08:44.036 +03:00 [INF] No migrations were applied. The database is already up to date.
+2023-01-24 22:08:44.252 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-01-24 22:08:44.256 +03:00 [INF] Ensuring database exists and is up to date at connection string 'Server=(localdb)\MSSQLLocalDB;Database=BugTracker;Trusted_Connection=True'
+2023-01-24 22:08:44.258 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-24 22:08:44.260 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-24 22:08:44.262 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-24 22:08:44.263 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-24 22:08:44.266 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-01-24 22:08:44.269 +03:00 [INF] No migrations were applied. The database is already up to date.
+2023-01-24 22:08:44.310 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-01-24 22:08:44.741 +03:00 [INF] Executed DbCommand (32ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-01-24 22:08:44.806 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-01-24 22:08:44.977 +03:00 [INF] Now listening on: https://localhost:7189
+2023-01-24 22:08:44.978 +03:00 [INF] Now listening on: http://localhost:5242
+2023-01-24 22:08:44.979 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-01-24 22:08:44.980 +03:00 [INF] Hosting environment: Development
+2023-01-24 22:08:44.981 +03:00 [INF] Content root path: C:\Users\max\source\Temp\Salik Bug Tracker\Salik Bug Tracker API\
+2023-01-24 22:09:16.181 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-01-24 22:09:16.194 +03:00 [INF] Retrieving all developers
+2023-01-24 22:09:16.213 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Discriminator], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[Name], [a].[Score], [a].[speciality]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Discriminator] = N'ApplicationUser'
+2023-01-24 22:09:16.261 +03:00 [INF] Retrieved all developers
+2023-01-24 22:17:42.394 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-01-24 22:17:42.426 +03:00 [INF] Ensuring database exists and is up to date at connection string 'Server=(localdb)\MSSQLLocalDB;Database=BugTracker;Trusted_Connection=True'
+2023-01-24 22:17:43.853 +03:00 [INF] Executed DbCommand (56ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-24 22:17:43.949 +03:00 [INF] Executed DbCommand (52ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-24 22:17:43.959 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-24 22:17:43.963 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-24 22:17:43.999 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-01-24 22:17:44.076 +03:00 [INF] No migrations were applied. The database is already up to date.
+2023-01-24 22:17:44.366 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-01-24 22:17:44.368 +03:00 [INF] Ensuring database exists and is up to date at connection string 'Server=(localdb)\MSSQLLocalDB;Database=BugTracker;Trusted_Connection=True'
+2023-01-24 22:17:44.370 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-24 22:17:44.372 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-24 22:17:44.375 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-24 22:17:44.376 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-24 22:17:44.379 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-01-24 22:17:44.382 +03:00 [INF] No migrations were applied. The database is already up to date.
+2023-01-24 22:17:44.426 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-01-24 22:17:45.093 +03:00 [INF] Executed DbCommand (37ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-01-24 22:17:45.159 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-01-24 22:17:45.373 +03:00 [INF] Now listening on: https://localhost:7189
+2023-01-24 22:17:45.375 +03:00 [INF] Now listening on: http://localhost:5242
+2023-01-24 22:17:45.376 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-01-24 22:17:45.378 +03:00 [INF] Hosting environment: Development
+2023-01-24 22:17:45.379 +03:00 [INF] Content root path: C:\Users\max\source\Temp\Salik Bug Tracker\Salik Bug Tracker API\

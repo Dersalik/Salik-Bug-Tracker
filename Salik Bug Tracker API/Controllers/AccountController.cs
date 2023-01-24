@@ -23,9 +23,10 @@ namespace Salik_Bug_Tracker_API.Controllers
         private readonly TokenValidationParameters _tokenValidationParameters;
         private readonly ApplicationDbContext _context;
         private readonly IConfiguration _configuration;
+        private readonly ILogger<AccountController> _logger;
 
         public AccountController(UserManager<ApplicationUser> usermanager, SignInManager<ApplicationUser> signinManager, RoleManager<IdentityRole> roleManager,
-           TokenValidationParameters tokenValidationParameters1,ApplicationDbContext context, IConfiguration configuration)
+           TokenValidationParameters tokenValidationParameters1,ApplicationDbContext context, IConfiguration configuration,ILogger<AccountController> logger)
         {
             _userManager = usermanager;
             _signinManager = signinManager;
@@ -33,6 +34,7 @@ namespace Salik_Bug_Tracker_API.Controllers
             _tokenValidationParameters = tokenValidationParameters1;
             _context = context;
             _configuration = configuration;
+            _logger = logger;
         }
 
         [HttpPost("register-user")]

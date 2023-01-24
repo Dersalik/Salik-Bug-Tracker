@@ -25,11 +25,13 @@ namespace Salik_Bug_Tracker_API.Controllers
         }
         private IUnitOfWork _unitOfWork { get; }
         const int maxProjectPageSize = 14;
+        private readonly ILogger<ProjectsController> _logger;
 
-        public ProjectsController(IMapper mapper, IUnitOfWork unitOfWork)
+        public ProjectsController(IMapper mapper, IUnitOfWork unitOfWork, ILogger<ProjectsController> logger)
         {
             this.Mapper = mapper;
             this._unitOfWork = unitOfWork;
+            _logger = logger;
         }
 
 

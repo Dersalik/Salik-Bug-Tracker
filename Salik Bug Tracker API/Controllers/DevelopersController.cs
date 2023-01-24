@@ -17,13 +17,15 @@ namespace Salik_Bug_Tracker_API.Controllers
             get;
         }
         private IUnitOfWork _unitOfWork { get; }
+        private readonly ILogger<DevelopersController> _logger;
 
-        public DevelopersController(IMapper mapper, IUnitOfWork unitOfWork)
+        public DevelopersController(IMapper mapper, IUnitOfWork unitOfWork, ILogger<DevelopersController> logger)
         {
             Mapper = mapper;
             _unitOfWork = unitOfWork;
+            _logger = logger;
         }
-        
+
         [HttpPost("{DeveloperId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

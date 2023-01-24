@@ -11,10 +11,28 @@ using System;
 using System.Text;
 using Salik_Bug_Tracker_API.Models.Helpers;
 using Salik_Bug_Tracker_API;
-
-
-
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Versioning;
+using Serilog;
+using Serilog.Enrichers.Span;
+using Serilog.Exceptions;
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddHealthChecks()
+    .AddDbContextCheck<ApplicationDbContext>();
+
+builder.Logging.ClearProviders();
+
+builder.Host.UseSerilog((context, loggerConfig) => {
+    loggerConfig
+    .ReadFrom.Configuration(context.Configuration)
+    .WriteTo.Console()
+    .Enrich.WithExceptionDetails()
+    .Enrich.FromLogContext()
+    .Enrich.With<ActivityEnricher>()
+    .WriteTo.File("log.txt");
+   
+});
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 // Add services to the container.
@@ -67,7 +85,11 @@ builder.Services.AddSwaggerGen(C =>
 {
     C.SwaggerDoc("v1", new OpenApiInfo { Title = "SalikBugTracker.API", Version = "v1" });
 });
-builder.Services.AddApiVersioning();
+builder.Services.AddApiVersioning(options => { options.AssumeDefaultVersionWhenUnspecified = true;
+    options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+    options.ApiVersionReader = new UrlSegmentApiVersionReader();
+    options.ReportApiVersions = true;
+});
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 var app = builder.Build();
 

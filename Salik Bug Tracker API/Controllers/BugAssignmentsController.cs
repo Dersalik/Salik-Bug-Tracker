@@ -17,11 +17,13 @@ namespace Salik_Bug_Tracker_API.Controllers
             get;
         }
         private IUnitOfWork _unitOfWork { get; }
+        private readonly ILogger<BugAssignmentsController> _logger;
 
-        public BugAssignmentsController(IMapper mapper, IUnitOfWork unitOfWork)
+        public BugAssignmentsController(IMapper mapper, IUnitOfWork unitOfWork, ILogger<BugAssignmentsController> logger)
         {
             Mapper = mapper;
             _unitOfWork = unitOfWork;
+            _logger = logger;
         }
 
 
