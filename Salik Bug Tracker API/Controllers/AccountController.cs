@@ -7,9 +7,11 @@ using Salik_Bug_Tracker_API.Data;
 using Salik_Bug_Tracker_API.DTO;
 using Salik_Bug_Tracker_API.Models;
 using Salik_Bug_Tracker_API.Models.Helpers;
+using Serilog;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 
 namespace Salik_Bug_Tracker_API.Controllers
 {
@@ -38,42 +40,47 @@ namespace Salik_Bug_Tracker_API.Controllers
         }
 
         [HttpPost("register-user")]
-        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Register([FromBody] RegisterDTO model)
         {
-            try { if (!ModelState.IsValid)
+            try
             {
-                return BadRequest("Please, provide all the required fields");
-            }
+                _logger.LogInformation("Received registration request for user: " + model.Email);
+                if (!ModelState.IsValid)
+                {
+                    _logger.LogWarning("Invalid model state in registration request for user: " + model.Email);
+                    return BadRequest("Please, provide all the required fields");
+                }
 
-            var userExists = await _userManager.FindByEmailAsync(model.Email);
-            if (userExists != null)
-            {
-                return BadRequest($"User {model.Email} already exists");
-            }
+       
+                var userExists = await _userManager.FindByEmailAsync(model.Email);
+                if (userExists != null)
+                {
+                    _logger.LogWarning("User already exists: " + model.Email);
+                    return BadRequest($"User {model.Email} already exists");
+                }
 
-            ApplicationUser newUser = new ApplicationUser()
-            {
-                Name= model.Name,
-                Email = model.Email,
-                UserName = model.Email,
-                SecurityStamp = Guid.NewGuid().ToString()
-            };
-            var result = await _userManager.CreateAsync(newUser, model.Password);
+                ApplicationUser newUser = new ApplicationUser()
+                {
+                    Name = model.Name,
+                    Email = model.Email,
+                    UserName = model.Email,
+                    SecurityStamp = Guid.NewGuid().ToString()
+                };
+                var result = await _userManager.CreateAsync(newUser, model.Password);
 
-            if (result.Succeeded)
-            {
-                //Add user role
-
-               
-               await _userManager.AddToRoleAsync(newUser, UserRoles.Developer);
-                   
-                return Ok("User created");
-            }
-            return BadRequest("User could not be created"); 
+                if (result.Succeeded)
+                {
+                    //Add user role
+                    await _userManager.AddToRoleAsync(newUser, UserRoles.Developer);
+                    _logger.LogInformation("Successfully registered user: " + model.Email);
+                    return Ok("User created");
+                }
+                _logger.LogWarning("Failed to register user: " + model.Email);
+                return BadRequest("User could not be created");
             }
             catch (Exception ex)
             {
+                _logger.LogError("Error in registration request for user: " + model.Email + ". Error: " + ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error");
             }
 
@@ -83,21 +90,28 @@ namespace Salik_Bug_Tracker_API.Controllers
         [HttpPost("login-user")]
         public async Task<IActionResult> Login([FromBody] LoginDTO loginVM)
         {
-            try { if (!ModelState.IsValid)
+            try
             {
-                return BadRequest("Please, provide all required fields");
-            }
+                _logger.LogInformation("Received login request for user: " + loginVM.Email);
+                if (!ModelState.IsValid)
+                {
+                    _logger.LogWarning("Invalid model state in login request for user: " + loginVM.Email);
+                    return BadRequest("Please, provide all required fields");
+                }
 
-            var userExists = await _userManager.FindByEmailAsync(loginVM.Email);
-            if (userExists != null && await _userManager.CheckPasswordAsync(userExists, loginVM.Password))
-            {
-                var tokenValue = await GenerateJWTTokenAsync(userExists, null);
-                return Ok(tokenValue);
-            }
-            return Unauthorized(); 
+                var userExists = await _userManager.FindByEmailAsync(loginVM.Email);
+                if (userExists != null && await _userManager.CheckPasswordAsync(userExists, loginVM.Password))
+                {
+                    var tokenValue = await GenerateJWTTokenAsync(userExists, null);
+                    _logger.LogInformation("Successfully logged in user: " + loginVM.Email);
+                    return Ok(tokenValue);
+                }
+                _logger.LogWarning("Unauthorized login attempt for user: " + loginVM.Email);
+                return Unauthorized();
             }
             catch (Exception ex)
             {
+                _logger.LogError("Error in login request for user: " + loginVM.Email + ". Error: " + ex.Message);
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error");
             }
         }

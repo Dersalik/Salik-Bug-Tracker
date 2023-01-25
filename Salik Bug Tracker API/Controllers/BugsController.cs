@@ -35,10 +35,13 @@ namespace Salik_Bug_Tracker_API.Controllers
         {
             try
             {
+                _logger.LogInformation("Received request to retrieve bugs for module {ModuleId}", ModuleId);
+
                 bool IsModuleAvailable = await _unitOfWork.moduleRepository.CheckModuleExists(ModuleId);
 
                 if (!IsModuleAvailable)
                 {
+                    _logger.LogWarning($"Module with id {ModuleId} was not found");
                     return NotFound();
                 }
                 var bugs = await _unitOfWork.bugRepository
@@ -46,11 +49,12 @@ namespace Salik_Bug_Tracker_API.Controllers
 
 
                 var bugDTOs = Mapper.Map<List<BugDTO>>(bugs);
-
+                _logger.LogInformation($"The bugs for module with id {ModuleId} was returned ");
                 return Ok(bugDTOs);
             }
             catch(Exception ex)
             {
+                _logger.LogError($"An error occurred while trying to recover bugs of module with id {ModuleId}: {ex}");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
             }
         }
@@ -59,20 +63,25 @@ namespace Salik_Bug_Tracker_API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<BugDTO>> GetBug(int BugId, int ProjectId,  int ModuleId)
         {
-            try {var bug = await _unitOfWork.bugRepository
+            try {
+                _logger.LogInformation("Received request to retrieve bug {BugId} from module {ModuleId} and project {ProjectId}", BugId, ModuleId, ProjectId);
+
+                var bug = await _unitOfWork.bugRepository
             .GetFirstOrDefault(b=>b.Id==BugId );
 
             if(bug == null)
             {
-                return NotFound("Bug is not available ");
+                    _logger.LogWarning($"Bug with id: {BugId} from project id: {ProjectId} and module id: {ModuleId} not found.");
+                    return NotFound("Bug is not available ");
             }
 
             var bugDTO = Mapper.Map<BugDTO>(bug);
-
-            return Ok(bugDTO);
+                _logger.LogInformation($"Successfully retrieved bug with id: {BugId} from project id: {ProjectId} and module id: {ModuleId}");
+                return Ok(bugDTO);
             }
-            catch(Exception e)
+            catch(Exception ex)
             {
+                _logger.LogError($"Error retrieving bug with id: {BugId} from project id: {ProjectId} and module id: {ModuleId}. Error: {ex}");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
             }
 
@@ -86,15 +95,20 @@ namespace Salik_Bug_Tracker_API.Controllers
         {
             try
             {
+                _logger.LogInformation("Received request to create bug in module {ModuleId} and project {ProjectId}", ModuleId, ProjectId);
+
                 bool IsModuleAvailable = await _unitOfWork.moduleRepository.CheckModuleExists(ModuleId);
 
                 if (!IsModuleAvailable)
                 {
+                    _logger.LogWarning($"Module with id: {ModuleId} not found.");
                     return NotFound();
                 }
                 bool DevExists = await _unitOfWork.userRepository.CheckDevExists(bugDTO.ApplicationUserId);
 
-                if (!DevExists) { return NotFound("Developer doesnt exist"); }
+                if (!DevExists) {
+                    _logger.LogWarning($"Developer with id: {bugDTO.ApplicationUserId} not found.");
+                    return NotFound("Developer doesnt exist"); }
 
                 var bug = Mapper.Map<Bug>(bugDTO);
                 bug.ModulesId = ModuleId;
@@ -102,11 +116,12 @@ namespace Salik_Bug_Tracker_API.Controllers
                 await _unitOfWork.Save();
 
                 var bugDTOToReturn = Mapper.Map<BugDTO>(bug);
-
+                _logger.LogInformation($"Successfully created bug with id: {bug.Id} for project id: {ProjectId} and module id: {ModuleId}");
                 return CreatedAtRoute(nameof(GetBug), new { ProjectId = ProjectId, ModuleId = ModuleId, BugId = bug.Id }, bugDTOToReturn);
             }
             catch (Exception ex)
             {
+                _logger.LogError($"Error creating bug for project id: {ProjectId} and module id: {ModuleId}. Error: {ex}");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error saving data to the database");
             }
         }
@@ -117,23 +132,29 @@ namespace Salik_Bug_Tracker_API.Controllers
         {
             try
             {
+                _logger.LogInformation("Received request to update bug {BugId} in module {ModuleId} and project {ProjectId}", BugId, ModuleId, ProjectId);
+
                 bool IsModuleAvailable = await _unitOfWork.moduleRepository.CheckModuleExists(ModuleId);
                 if (!IsModuleAvailable)
                 {
+                    _logger.LogWarning($"Module with id: {ModuleId} not found.");
                     return NotFound();
                 }
                 var bug = await _unitOfWork.bugRepository.GetFirstOrDefault(b => b.Id == BugId);
                 if (bug == null)
                 {
+                    _logger.LogWarning($"Bug with id: {BugId} not found.");
                     return NotFound("Bug not found");
                 }
                 Mapper.Map(bugDTO, bug);
                 _unitOfWork.bugRepository.UpdateEntity(bug);
                 await _unitOfWork.Save();
+                _logger.LogInformation($"Successfully updated bug with id: {BugId} for project id: {ProjectId} and module id: {ModuleId}");
                 return NoContent();
             }
             catch (Exception ex)
             {
+                _logger.LogError($"Error updating bug with id: {BugId} for project id: {ProjectId} and module id: {ModuleId}. Error: {ex}");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error updating bug in the database");
             }
         }
@@ -142,14 +163,18 @@ namespace Salik_Bug_Tracker_API.Controllers
         {
             try
             {
+                _logger.LogInformation("Received request to partially update bug {BugId} in module {ModuleId} and project {ProjectId}", BugId, ModuleId, ProjectId);
+
                 bool IsModuleAvailable = await _unitOfWork.moduleRepository.CheckModuleExists(ModuleId);
                 if (!IsModuleAvailable)
                 {
+                    _logger.LogWarning($"Module with id: {ModuleId} not found.");
                     return NotFound();
                 }
                 var bug = await _unitOfWork.bugRepository.GetFirstOrDefault(b => b.Id == BugId);
                 if (bug == null)
                 {
+                    _logger.LogWarning($"Bug with id: {BugId} not found.");
                     return NotFound("Bug not found");
                 }
                 var bugDTO = Mapper.Map<BugDTOForUpdate>(bug);
@@ -157,15 +182,19 @@ namespace Salik_Bug_Tracker_API.Controllers
                 TryValidateModel(bugDTO);
                 if (!ModelState.IsValid)
                 {
+                    _logger.LogWarning($"Invalid model state while patching bug with id: {BugId} for project id: {ProjectId} and module id: {ModuleId}.");
                     return BadRequest(ModelState);
                 }
                 Mapper.Map(bugDTO, bug);
                 _unitOfWork.bugRepository.UpdateEntity(bug);
-                await _unitOfWork.Save();
+                await _unitOfWork.Save(); 
+                _logger.LogInformation($"Successfully patched bug with id: {BugId} for project id: {ProjectId} and module id: {ModuleId}");
+
                 return NoContent();
             }
             catch (Exception ex)
             {
+                _logger.LogError($"Error patching bug with id: {BugId} for project id: {ProjectId} and module id: {ModuleId}. Error: {ex}");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error updating bug in the database");
             }
         }

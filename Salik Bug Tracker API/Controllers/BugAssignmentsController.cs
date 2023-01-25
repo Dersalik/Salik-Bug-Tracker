@@ -34,10 +34,13 @@ namespace Salik_Bug_Tracker_API.Controllers
         {
             try
             {
+                _logger.LogInformation("Received request to assign developer {developerId} to bug {BugId}", developerId, BugId);
+
                 var bug = await _unitOfWork.bugRepository.GetFirstOrDefault(b => b.Id == BugId);
                 var developer = await _unitOfWork.userRepository.GetFirstOrDefault(d => d.Id == developerId);
                 if (bug == null || developer == null)
                 {
+                    _logger.LogWarning($"failed to retreive a bug with id {BugId} or developer with id {developerId}");
                     return NotFound("Bug or developer not found");
                 }
                 var bugAssignment = new BugDeveloper
@@ -49,10 +52,12 @@ namespace Salik_Bug_Tracker_API.Controllers
                 };
                 await _unitOfWork.bugDeveloperRepository.Add(bugAssignment);
                 await _unitOfWork.Save();
+                _logger.LogInformation($"Successfuly developer with id {developerId} was assigned to a bug with id {BugId}");
                 return NoContent();
             }
             catch (Exception ex)
             {
+                _logger.LogError($"an error occured while trying to assing a developer with id {developerId} to a bug with id {BugId}: {ex}");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error assigning developer to bug");
             }
         }
@@ -64,19 +69,24 @@ namespace Salik_Bug_Tracker_API.Controllers
         {
             try
             {
+                _logger.LogInformation("Received request to retrieve assignments for bug {BugId}", BugId);
+
                 var bug = await _unitOfWork.bugRepository.GetFirstOrDefault(b => b.Id == BugId);
                 if (bug == null)
                 {
+                    _logger.LogWarning($"failed to retreive a bug with id {BugId} ");
                     return NotFound("Bug not found");
                 }
                 var developers = await _unitOfWork.bugDeveloperRepository.GetDevelopersByBugId(BugId);
 
 
                 var developerDTOs = Mapper.Map<IEnumerable<UserDTO>>(developers);
+                _logger.LogInformation($"{developerDTOs.Count()} developers that were assigned to a bug with id {BugId} were returned ");
                 return Ok(developerDTOs);
             }
             catch (Exception ex)
             {
+                _logger.LogError($"an error occurred while trying to retrieve developers assigned to a bug with id {BugId}: {ex}");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving developers assigned to the bug");
             }
         }
@@ -88,17 +98,22 @@ namespace Salik_Bug_Tracker_API.Controllers
         {
             try
             {
+                _logger.LogInformation("Received request to unassign developer {developerId} from bug {BugId}", developerId, BugId);
+
                 var bugAssignment = await _unitOfWork.bugDeveloperRepository.GetFirstOrDefault(ba => ba.BugId == BugId && ba.ApplicationUserId == developerId);
                 if (bugAssignment == null)
                 {
+                    _logger.LogWarning($"no developers with id {developerId} was found assigned to a bug with id {BugId}");
                     return NotFound("Assignment not found");
                 }
                 _unitOfWork.bugDeveloperRepository.Remove(bugAssignment);
                 await _unitOfWork.Save();
+                _logger.LogInformation($"developer with id {developerId} was successfully unassigned from a bug with id {BugId}");
                 return NoContent();
             }
             catch (Exception ex)
             {
+                _logger.LogError($"an error occurred while trying to unassign developer with id {developerId} from bug with id {BugId} : {ex} ");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error unassigning developer from bug");
             }
         }

@@ -2,7 +2,7 @@
 {
     public interface IUnitOfWork
     {
-        Task Save();
+        Task<int> Save();
         IBugDeveloperRepository bugDeveloperRepository { get; }
         IBugRepository bugRepository { get; }
         IModuleRepository moduleRepository { get; }

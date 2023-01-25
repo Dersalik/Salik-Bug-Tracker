@@ -50,7 +50,7 @@ namespace Salik_Bug_Tracker_API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"An error occurred while retrieving developer with id {developerId}: {ex.Message}");
+                _logger.LogError($"An error occurred while retrieving developer with id {developerId}: {ex}");
                 return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred: {ex.Message}");
             }
         }
@@ -68,7 +68,7 @@ namespace Salik_Bug_Tracker_API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"An error occurred while retrieving all developers: {ex.Message}");
+                _logger.LogError($"An error occurred while retrieving all developers: {ex}");
                 return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred: {ex.Message}");
             }
         }
@@ -96,7 +96,7 @@ namespace Salik_Bug_Tracker_API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"An error occurred while retrieving modules for developer with id {developerId}: {ex.Message}");
+                _logger.LogError($"An error occurred while retrieving modules for developer with id {developerId}: {ex}");
                 return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred: {ex.Message}");
             }
         }
@@ -124,7 +124,7 @@ namespace Salik_Bug_Tracker_API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"An error occurred while retrieving bugs for developer with id {developerId}: {ex.Message}");
+                _logger.LogError($"An error occurred while retrieving bugs for developer with id {developerId}: {ex}");
                 return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred: {ex.Message}");
             }
         }
@@ -153,7 +153,7 @@ namespace Salik_Bug_Tracker_API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"An error occurred: {ex.Message}");
+                _logger.LogError($"An error occurred: {ex}");
                 return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred: {ex.Message}");
             }
         }

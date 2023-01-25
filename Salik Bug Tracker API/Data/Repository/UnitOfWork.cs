@@ -25,9 +25,9 @@ namespace Salik_Bug_Tracker_API.Data.Repository
         public IUserRepository userRepository { get; private set; }
         public IModuleUserRepository moduleUserRepository { get; private set; }
 
-        public async Task Save()
+        public async Task<int> Save()
         {
-            await _db.SaveChangesAsync();
+            return await _db.SaveChangesAsync();
         }
     }
 }
