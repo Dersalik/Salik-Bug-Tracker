@@ -38,6 +38,8 @@ namespace Salik_Bug_Tracker_API.Controllers
         {
             try
             {
+                _logger.LogInformation($"getting skills of developer with id {UserId}");
+
                 var IsDevAvailable = await _unitOfWork.userRepository.CheckDevExists(UserId);
 
                 if (!IsDevAvailable)
@@ -65,6 +67,8 @@ namespace Salik_Bug_Tracker_API.Controllers
         {
             try
             {
+                _logger.LogInformation($"getting skill with id {skillId} of developer with id {UserId}");
+
                 var IsDevAvailable = await _unitOfWork.userRepository.CheckDevExists(UserId);
 
                 if (!IsDevAvailable)
@@ -97,6 +101,8 @@ namespace Salik_Bug_Tracker_API.Controllers
         {
             try
             {
+                _logger.LogInformation($"adding a new skill for developer with id {UserId}");
+
                 var IsDevAvailable = await _unitOfWork.userRepository.CheckDevExists(UserId);
 
          
@@ -132,6 +138,8 @@ namespace Salik_Bug_Tracker_API.Controllers
         {
             try
             {
+                _logger.LogInformation($"deleting skill with id {SkillId} for developer with id {UserId}");
+
                 var IsDevAvailable = await _unitOfWork.userRepository.CheckDevExists(UserId);
 
                 if (!IsDevAvailable)
@@ -165,6 +173,8 @@ namespace Salik_Bug_Tracker_API.Controllers
         {
             try
             {
+                _logger.LogInformation($"edit skill with id {SkillId} for developer with id {UserId}");
+
                 var IsDevAvailable = await _unitOfWork.userRepository.CheckDevExists(UserId);
 
                 if (!IsDevAvailable)

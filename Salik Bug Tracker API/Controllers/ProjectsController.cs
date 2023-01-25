@@ -96,6 +96,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         {
             try
             {
+                _logger.LogInformation($"Updating project with id: {ProjectId} - {projectDto} ");
                 if (!await _unitOfWork.projectRepository.CheckProjectExists(ProjectId))
                 {
                     _logger.LogWarning($"Project with ID {ProjectId} not found");
@@ -128,6 +129,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         {
             try
             {
+                _logger.LogInformation($"Updating project with id: {ProjectId} with patch document: {patchDocument}.");    
                 if (!await _unitOfWork.projectRepository.CheckProjectExists(ProjectId))
                 {
                     _logger.LogWarning($"Project with ID {ProjectId} not found");
@@ -171,6 +173,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         {
             try
             {
+                _logger.LogInformation("Creating new project...");
                 if (!ModelState.IsValid)
                 {
                     _logger.LogWarning("Invalid model state");
@@ -198,6 +201,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         {
             try
             {
+                _logger.LogInformation($"deleting Project with {ProjectId}....");
                 if (!await _unitOfWork.projectRepository.CheckProjectExists(ProjectId))
                 {
                     _logger.LogWarning($"Project with ID {ProjectId} not found");

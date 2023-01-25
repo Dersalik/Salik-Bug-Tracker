@@ -9,6 +9,7 @@ using Salik_Bug_Tracker_API.DTO;
 using Salik_Bug_Tracker_API.Models;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
+using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 
 namespace Salik_Bug_Tracker_API.Controllers
 {
@@ -137,6 +138,8 @@ namespace Salik_Bug_Tracker_API.Controllers
         {
             try
             {
+                _logger.LogInformation($"getting bugs that are assigned developer with id {developerId} found in module with id {ModuleId}");
+
                 var moduleExists = await _unitOfWork.moduleRepository.CheckModuleExists(ModuleId);
                 var devExists = await _unitOfWork.userRepository.CheckDevExists(developerId);
 
