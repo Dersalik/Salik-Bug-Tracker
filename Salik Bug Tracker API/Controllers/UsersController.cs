@@ -10,12 +10,16 @@ using Salik_Bug_Tracker_API.Models;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
 using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
+using Salik_Bug_Tracker_API.Models.Helpers;
 
 namespace Salik_Bug_Tracker_API.Controllers
 {
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
+    [Authorize(Roles = UserRoles.Developer)]
     public class UsersController : ControllerBase
     {
         private readonly IMapper _mapper;

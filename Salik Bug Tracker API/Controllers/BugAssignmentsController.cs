@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Salik_Bug_Tracker_API.Data.Repository.IRepository;
@@ -10,6 +11,7 @@ namespace Salik_Bug_Tracker_API.Controllers
     [Route("api/v{version:apiVersion}/Projects/{ProjectId}/Modules/{ModuleId}/Bugs/{BugId}/BugAssignments")]
     [ApiVersion("1.0")]
     [ApiController]
+    [Authorize]
     public class BugAssignmentsController : ControllerBase
     {
         private IMapper Mapper

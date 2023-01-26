@@ -173,6 +173,7 @@ namespace Salik_Bug_Tracker_API.Controllers
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(JwtRegisteredClaimNames.Sub, user.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                
             };
 
             //Add User Role Claims

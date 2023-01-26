@@ -16,6 +16,8 @@ using Microsoft.AspNetCore.Mvc.Versioning;
 using Serilog;
 using Serilog.Enrichers.Span;
 using Serilog.Exceptions;
+using Swashbuckle.AspNetCore.Filters;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHealthChecks()
@@ -72,7 +74,6 @@ builder.Services.AddAuthentication(options =>
 
     
 });
-
 builder.Services.AddControllers(options =>
 {
     options.InputFormatters.Insert(0, MyJPIF.GetJsonPatchInputFormatter());
@@ -83,7 +84,34 @@ builder.Services.AddControllers(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(C =>
 {
+    C.EnableAnnotations();
+
     C.SwaggerDoc("v1", new OpenApiInfo { Title = "SalikBugTracker.API", Version = "v1" });
+    C.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "\"JWT Authorization header using the Bearer scheme. Example: \\\"Authorization: Bearer {token}\\\"\"",
+        Name="Authorization",
+        In=ParameterLocation.Header,
+        Type=SecuritySchemeType.ApiKey,
+        Scheme="Bearer"
+
+    });
+  
+    C.AddSecurityRequirement(new OpenApiSecurityRequirement {
+    {
+        new OpenApiSecurityScheme
+        {
+            Reference = new OpenApiReference
+            {
+                Type = ReferenceType.SecurityScheme,
+                Id = "Bearer"
+            }
+        },
+        Array.Empty<string>()
+    }});
+
+    C.OperationFilter<SecurityRequirementsOperationFilter>();
+
 });
 builder.Services.AddApiVersioning(options => { options.AssumeDefaultVersionWhenUnspecified = true;
     options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
@@ -99,7 +127,7 @@ await EnsureDb(app.Services, app.Logger);
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(C=>C.SwaggerEndpoint("/swagger/v1/swagger.json", "SchoolApp.API v1"));
+    app.UseSwaggerUI(C=>C.SwaggerEndpoint("/swagger/v1/swagger.json", "Bug Tracker.API v1"));
 }
 
 app.UseHttpsRedirection();
