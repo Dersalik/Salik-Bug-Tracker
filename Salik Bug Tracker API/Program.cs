@@ -110,7 +110,6 @@ builder.Services.AddSwaggerGen(C =>
         Array.Empty<string>()
     }});
 
-    C.OperationFilter<SecurityRequirementsOperationFilter>();
 
 });
 builder.Services.AddApiVersioning(options => { options.AssumeDefaultVersionWhenUnspecified = true;
