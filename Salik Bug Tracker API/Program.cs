@@ -19,6 +19,8 @@ using Serilog.Exceptions;
 using Swashbuckle.AspNetCore.Filters;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -84,6 +86,11 @@ builder.Services.AddControllers(options =>
 .AddNewtonsoftJson();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+
+var apiVersionDescriptionProvider =builder.Services.BuildServiceProvider()
+  .GetService<IApiVersionDescriptionProvider>();
+
 builder.Services.AddSwaggerGen(C =>
 {
     C.EnableAnnotations();
@@ -113,7 +120,18 @@ builder.Services.AddSwaggerGen(C =>
         }
     });
 
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    C.IncludeXmlComments(xmlPath);
+
+
+
+
 });
+
+
+
+
 builder.Services.AddApiVersioning(options => { options.AssumeDefaultVersionWhenUnspecified = true;
     options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
     options.ApiVersionReader = new UrlSegmentApiVersionReader();
