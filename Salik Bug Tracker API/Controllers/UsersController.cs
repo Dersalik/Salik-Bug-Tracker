@@ -37,6 +37,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<UserDTO>> GetDeveloper(string developerId)
         {
             _logger.LogInformation($"Retrieving developer with id {developerId}");

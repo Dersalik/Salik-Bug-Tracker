@@ -31,6 +31,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> AssignDeveloper(int ProjectId,int ModuleId, string DeveloperId)
         {
             try {
@@ -140,6 +141,7 @@ namespace Salik_Bug_Tracker_API.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesDefaultResponseType]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<List<UserDTO>>> getDevs(int ModuleId)
         {
