@@ -40,6 +40,9 @@ namespace Salik_Bug_Tracker_API.Controllers
         }
 
         [HttpPost("register-user")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Register([FromBody] RegisterDTO model)
         {
             try
@@ -88,6 +91,10 @@ namespace Salik_Bug_Tracker_API.Controllers
 
 
         [HttpPost("login-user")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Login([FromBody] LoginDTO loginVM)
         {
             try
@@ -117,6 +124,9 @@ namespace Salik_Bug_Tracker_API.Controllers
         }
 
         [HttpPost("refresh-token")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> RefreshToken([FromBody] TokenRequestDTO tokenRequestVM)
         {
             try
@@ -141,7 +151,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         
             var jwtTokenHandler = new JwtSecurityTokenHandler();
             var storedToken = await _context.RefreshTokens.FirstOrDefaultAsync(x => x.Token == tokenRequestVM.RefreshToken);
-            var dbUser = await _userManager.FindByIdAsync(storedToken.UserId);
+            var dbUser = await _userManager.FindByIdAsync(storedToken?.UserId);
 
             try
             {
@@ -151,7 +161,7 @@ namespace Salik_Bug_Tracker_API.Controllers
             }
             catch (SecurityTokenExpiredException)
             {
-                if (storedToken.DateExpire >= DateTime.UtcNow)
+                if (storedToken?.DateExpire >= DateTime.UtcNow)
                 {
                     return await GenerateJWTTokenAsync(dbUser, storedToken);
                 }
@@ -164,7 +174,7 @@ namespace Salik_Bug_Tracker_API.Controllers
 
 
 
-        private async Task<AuthResultDTO> GenerateJWTTokenAsync(ApplicationUser user, RefreshToken rToken)
+        private async Task<AuthResultDTO> GenerateJWTTokenAsync(ApplicationUser user, RefreshToken? rToken)
         {
             var authClaims = new List<Claim>()
             {

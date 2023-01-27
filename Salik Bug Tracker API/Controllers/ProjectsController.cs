@@ -37,6 +37,7 @@ namespace Salik_Bug_Tracker_API.Controllers
 
         [HttpGet()]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<ProjectDTO>>> getProjects([FromQuery]
             string? name, [FromQuery] string? searchQuery, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
@@ -65,6 +66,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         [HttpGet("{projectId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<ProjectDTO>> getProject(int projectId)
         {
             try
@@ -92,6 +94,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Update(int ProjectId, [FromBody] ProjectForUpdateDTO projectDto)
         {
             try
@@ -125,6 +128,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Update(int ProjectId, [FromBody] JsonPatchDocument<ProjectForUpdateDTO> patchDocument)
         {
             try
@@ -169,6 +173,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<ProjectDTO>> CreateProject([FromBody] ProjectForCreationDTO projectDto)
         {
             try
@@ -197,6 +202,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         [HttpDelete("{ProjectId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> deleteProject(int ProjectId)
         {
             try

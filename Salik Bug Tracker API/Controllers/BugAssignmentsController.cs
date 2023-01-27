@@ -28,10 +28,16 @@ namespace Salik_Bug_Tracker_API.Controllers
             _logger = logger;
         }
 
-
+        /// <summary>
+        /// Assigns a developer to a bug 
+        /// </summary>
+        /// <param name="BugId"></param>
+        /// <param name="developerId"></param>
+        /// <returns></returns>
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<BugDeveloper>> AssignDeveloperToBug(int BugId, string developerId)
         {
             try
@@ -64,9 +70,17 @@ namespace Salik_Bug_Tracker_API.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Returns developers that are assigned to a bug 
+        /// </summary>
+        /// <param name="BugId"></param>
+        /// 
+        
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<UserDTO>>> GetBugAssignments(int BugId)
         {
             try
@@ -96,6 +110,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         [HttpDelete("{developerId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> UnassignDeveloperFromBug(int BugId, string developerId)
         {
             try

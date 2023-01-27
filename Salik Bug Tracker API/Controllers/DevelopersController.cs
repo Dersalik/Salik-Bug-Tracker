@@ -29,6 +29,8 @@ namespace Salik_Bug_Tracker_API.Controllers
         [HttpPost("{DeveloperId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> AssignDeveloper(int ProjectId,int ModuleId, string DeveloperId)
         {
             try {
@@ -73,7 +75,7 @@ namespace Salik_Bug_Tracker_API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"an error occured while trying to assign a Developer with id {DeveloperId} to a module with id {ModuleId}");
+                _logger.LogError($"an error occured while trying to assign a Developer with id {DeveloperId} to a module with id {ModuleId}:{ex}");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data in the database");
             }
 
@@ -83,6 +85,9 @@ namespace Salik_Bug_Tracker_API.Controllers
         [HttpDelete("{DeveloperId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> UnassignDeveloper(int ProjectId, int ModuleId, string DeveloperId)
         {
             try {
@@ -126,7 +131,7 @@ namespace Salik_Bug_Tracker_API.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"an error occurred while trying to unassign a developer with id {DeveloperId} from a module with id {ModuleId}");
+                _logger.LogError($"an error occurred while trying to unassign a developer with id {DeveloperId} from a module with id {ModuleId}:{ex}");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data in the database");
             }
 
@@ -135,6 +140,7 @@ namespace Salik_Bug_Tracker_API.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<List<UserDTO>>> getDevs(int ModuleId)
         {
             try {

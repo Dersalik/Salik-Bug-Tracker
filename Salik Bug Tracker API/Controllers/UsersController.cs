@@ -34,6 +34,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         }
 
         [HttpGet("{developerId}")]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<UserDTO>> GetDeveloper(string developerId)
@@ -62,6 +63,8 @@ namespace Salik_Bug_Tracker_API.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<List<UserDTO>>> GetDevelopers()
         {
             _logger.LogInformation("Retrieving all developers");
@@ -79,9 +82,11 @@ namespace Salik_Bug_Tracker_API.Controllers
         }
 
        
-            [HttpGet("{developerId}/modules")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+        [HttpGet("{developerId}/modules")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<IEnumerable<ModuleDTO>>> GetModulesByDeveloperId(string developerId)
         {
             _logger.LogInformation($"Retrieving modules for developer with id {developerId}");
@@ -110,6 +115,8 @@ namespace Salik_Bug_Tracker_API.Controllers
         [HttpGet("{developerId}/bugs")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<IEnumerable<BugDTO>>> GetBugsByDeveloperId(string developerId)
         {
             _logger.LogInformation($"Retrieving bugs for developer with id {developerId}");
@@ -138,6 +145,8 @@ namespace Salik_Bug_Tracker_API.Controllers
         [HttpGet("{ModuleId}/bugs/{developerId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<IEnumerable<BugDTO>>> GetBugsByModuleIdAndDeveloperId(int ModuleId, string developerId)
         {
             try

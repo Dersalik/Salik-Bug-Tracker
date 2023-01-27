@@ -34,6 +34,8 @@ namespace Salik_Bug_Tracker_API.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<List<SkillDTO>>> getSkills(string UserId)
         {
             try
@@ -63,6 +65,8 @@ namespace Salik_Bug_Tracker_API.Controllers
         [HttpGet("{skillId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<List<SkillDTO>>> getSkill(string UserId, int skillId)
         {
             try
@@ -97,6 +101,8 @@ namespace Salik_Bug_Tracker_API.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> AddSkill([FromBody] SkillDTOForCreation Skill, string UserId)
         {
             try
@@ -134,6 +140,8 @@ namespace Salik_Bug_Tracker_API.Controllers
         [HttpDelete("{SkillId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> deleteSkill(string UserId,int SkillId)
         {
             try
@@ -166,9 +174,10 @@ namespace Salik_Bug_Tracker_API.Controllers
             }
         }
         [HttpPut("{SkillId}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult> EditSkill(int SkillId, [FromBody] SkillDTOForUpdate Skill, string UserId)
         {
             try

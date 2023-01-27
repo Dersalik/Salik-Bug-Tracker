@@ -31,6 +31,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<List<BugDTO>>> GetBugs(int ModuleId)
         {
             try
@@ -61,6 +62,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         [HttpGet("{BugId}",Name = "GetBug")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<BugDTO>> GetBug(int BugId, int ProjectId,  int ModuleId)
         {
             try {
@@ -89,8 +91,10 @@ namespace Salik_Bug_Tracker_API.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<BugDTO>> CreateBug(int ProjectId, int ModuleId,[FromBody] BugDTOForCreation bugDTO)
         {
             try
@@ -126,8 +130,9 @@ namespace Salik_Bug_Tracker_API.Controllers
             }
         }
         [HttpPut("{BugId}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> UpdateBug(int BugId, int ProjectId, int ModuleId, BugDTOForUpdate bugDTO)
         {
             try
@@ -159,6 +164,10 @@ namespace Salik_Bug_Tracker_API.Controllers
             }
         }
         [HttpPatch("{BugId}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> UpdateBug(int BugId, int ProjectId, int ModuleId, JsonPatchDocument<BugDTOForUpdate> patchDoc)
         {
             try

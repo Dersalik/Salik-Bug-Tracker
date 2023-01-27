@@ -17,6 +17,8 @@ using Serilog;
 using Serilog.Enrichers.Span;
 using Serilog.Exceptions;
 using Swashbuckle.AspNetCore.Filters;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -77,7 +79,7 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddControllers(options =>
 {
     options.InputFormatters.Insert(0, MyJPIF.GetJsonPatchInputFormatter());
-
+    options.Filters.Add(new AuthorizeFilter());
 })
 .AddNewtonsoftJson();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -89,27 +91,27 @@ builder.Services.AddSwaggerGen(C =>
     C.SwaggerDoc("v1", new OpenApiInfo { Title = "SalikBugTracker.API", Version = "v1" });
     C.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
-        Description = "\"JWT Authorization header using the Bearer scheme. Example: \\\"Authorization: Bearer {token}\\\"\"",
-        Name="Authorization",
-        In=ParameterLocation.Header,
-        Type=SecuritySchemeType.ApiKey,
-        Scheme="Bearer"
-
+        In = ParameterLocation.Header,
+        Description = "Please enter a valid token",
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        BearerFormat = "JWT",
+        Scheme = "Bearer"
     });
-  
-    C.AddSecurityRequirement(new OpenApiSecurityRequirement {
+    C.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
-        new OpenApiSecurityScheme
         {
-            Reference = new OpenApiReference
+            new OpenApiSecurityScheme
             {
-                Type = ReferenceType.SecurityScheme,
-                Id = "Bearer"
-            }
-        },
-        Array.Empty<string>()
-    }});
-
+                Reference = new OpenApiReference
+                {
+                    Type=ReferenceType.SecurityScheme,
+                    Id="Bearer"
+                }
+            },
+            new string[]{}
+        }
+    });
 
 });
 builder.Services.AddApiVersioning(options => { options.AssumeDefaultVersionWhenUnspecified = true;
