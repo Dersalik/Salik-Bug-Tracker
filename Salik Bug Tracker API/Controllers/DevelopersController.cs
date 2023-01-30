@@ -7,6 +7,9 @@ using Salik_Bug_Tracker_API.Models;
 
 namespace Salik_Bug_Tracker_API.Controllers
 {
+    /// <summary>
+    /// A controller for developers that are assigned to a module 
+    /// </summary>
     [Route("api/v{version:apiVersion}/Projects/{ProjectId}/Modules/{ModuleId}/Developers")]
     [ApiVersion("1.0")]
     [ApiController]

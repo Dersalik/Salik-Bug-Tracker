@@ -216,7 +216,7 @@ namespace Salik_Bug_Tracker_API.Controllers
                 }
 
                 var DevWithSkills = await _unitOfWork.userRepository.GetFirstOrDefaultWithSkills(d => d.Id == UserId);
-                bool SkillExists = DevWithSkills.skills.Exists(d => d.Id == SkillId);
+                bool SkillExists = DevWithSkills!.skills!.Exists(d => d.Id == SkillId);
                 if (!SkillExists) {
                     _logger.LogWarning($"failed to find skill with id {SkillId} for developer with id {UserId}");
                     return NotFound("Skill doesnt exist");
@@ -225,7 +225,7 @@ namespace Salik_Bug_Tracker_API.Controllers
                 var skillFromRepo = DevWithSkills.skills.FirstOrDefault(d => d.Id == SkillId);
                 Mapper.Map(Skill, skillFromRepo);
 
-                _unitOfWork.skillRepository.UpdateEntity(skillFromRepo);
+                _unitOfWork.skillRepository.UpdateEntity(skillFromRepo!);
                 await _unitOfWork.Save();
                 _logger.LogInformation($"skill with id {SkillId} that belongs to developer with id {UserId} was updated successfuly ");
                 return NoContent();
