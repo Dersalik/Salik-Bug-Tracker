@@ -107,7 +107,11 @@ namespace Salik_Bug_Tracker_API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving developers assigned to the bug");
             }
         }
-
+        /// <summary>
+        /// Unassgins a developer from a bug 
+        /// </summary>
+        /// <param name="BugId"></param>
+        /// <param name="developerId"></param>
         [HttpDelete("{developerId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

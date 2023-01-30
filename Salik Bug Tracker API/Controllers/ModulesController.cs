@@ -64,7 +64,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         /// </summary>
         /// <param name="ProjectId"></param>
         /// <param name="ModuleId"></param>
-\        [HttpGet("{ModuleId}", Name = "GetModule")]
+        [HttpGet("{ModuleId}", Name = "GetModule")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]

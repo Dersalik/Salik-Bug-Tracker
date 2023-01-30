@@ -30,7 +30,10 @@ namespace Salik_Bug_Tracker_API.Controllers
             _unitOfWork = unitOfWork;
             _logger = logger;
         }
-
+        /// <summary>
+        /// gets all of the skills that a developer has
+        /// </summary>
+        /// <param name="UserId"></param>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -62,6 +65,11 @@ namespace Salik_Bug_Tracker_API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
             }
         }
+        /// <summary>
+        /// Gets a particular skill 
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <param name="skillId"></param>
         [HttpGet("{skillId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -97,6 +105,11 @@ namespace Salik_Bug_Tracker_API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
             }
         }
+        /// <summary>
+        /// Adds a new skill
+        /// </summary>
+        /// <param name="Skill"></param>
+        /// <param name="UserId"></param>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -136,7 +149,11 @@ namespace Salik_Bug_Tracker_API.Controllers
             }
         }
 
-
+        /// <summary>
+        /// deletes a skill 
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <param name="SkillId"></param>
         [HttpDelete("{SkillId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -173,6 +190,12 @@ namespace Salik_Bug_Tracker_API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data from the database");
             }
         }
+        /// <summary>
+        /// edits a skill 
+        /// </summary>
+        /// <param name="SkillId"></param>
+        /// <param name="Skill"></param>
+        /// <param name="UserId"></param>
         [HttpPut("{SkillId}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

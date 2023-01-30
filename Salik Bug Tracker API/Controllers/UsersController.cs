@@ -32,7 +32,10 @@ namespace Salik_Bug_Tracker_API.Controllers
             _unitOfWork = unitOfWork;
             _logger = logger;
         }
-
+        /// <summary>
+        /// Gets a particular developer
+        /// </summary>
+        /// <param name="developerId"></param>
         [HttpGet("{developerId}")]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -61,7 +64,9 @@ namespace Salik_Bug_Tracker_API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred: {ex.Message}");
             }
         }
-
+        /// <summary>
+        /// Gets all of the developers 
+        /// </summary>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
@@ -82,7 +87,10 @@ namespace Salik_Bug_Tracker_API.Controllers
             }
         }
 
-       
+       /// <summary>
+       /// gets all of the modules that are assigned to a particular Developer
+       /// </summary>
+       /// <param name="developerId"></param>
         [HttpGet("{developerId}/modules")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -112,7 +120,10 @@ namespace Salik_Bug_Tracker_API.Controllers
             }
         }
 
-
+        /// <summary>
+        ///  gets all of the bugs that are assigned to a particular Developer
+        /// </summary>
+        /// <param name="developerId"></param>
         [HttpGet("{developerId}/bugs")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -142,7 +153,11 @@ namespace Salik_Bug_Tracker_API.Controllers
             }
         }
 
-
+        /// <summary>
+        /// gets bugs that are in a particular module and are assigned to a particular developer 
+        /// </summary>
+        /// <param name="ModuleId"></param>
+        /// <param name="developerId"></param>
         [HttpGet("{ModuleId}/bugs/{developerId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

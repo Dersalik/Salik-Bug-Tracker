@@ -93,7 +93,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         /// <param name="ProjectId"></param>
         /// <param name="ModuleId"></param>
         /// <param name="DeveloperId"></param>
-\        [HttpDelete("{DeveloperId}")]
+        [HttpDelete("{DeveloperId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
@@ -152,7 +152,7 @@ namespace Salik_Bug_Tracker_API.Controllers
         /// gets developers that are assigned to a module 
         /// </summary>
         /// <param name="ModuleId"></param>
-\        [HttpGet]
+        [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
