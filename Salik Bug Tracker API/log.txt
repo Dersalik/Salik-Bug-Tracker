@@ -1850,3 +1850,47 @@ WHERE [a].[NormalizedName] = @__normalizedName_0
 2023-01-27 23:41:00.751 +03:00 [INF] Application started. Press Ctrl+C to shut down.
 2023-01-27 23:41:00.752 +03:00 [INF] Hosting environment: Development
 2023-01-27 23:41:00.752 +03:00 [INF] Content root path: C:\Users\max\source\Temp\Salik Bug Tracker\Salik Bug Tracker API\
+2023-01-27 23:43:28.520 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-01-27 23:43:28.552 +03:00 [INF] Ensuring database exists and is up to date at connection string 'Server=(localdb)\MSSQLLocalDB;Database=BugTracker;Trusted_Connection=True'
+2023-01-27 23:43:29.310 +03:00 [INF] Executed DbCommand (47ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-27 23:43:29.387 +03:00 [INF] Executed DbCommand (40ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-27 23:43:29.395 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-27 23:43:29.400 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-27 23:43:29.424 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-01-27 23:43:29.450 +03:00 [INF] No migrations were applied. The database is already up to date.
+2023-01-27 23:43:29.736 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-01-27 23:43:29.749 +03:00 [INF] Ensuring database exists and is up to date at connection string 'Server=(localdb)\MSSQLLocalDB;Database=BugTracker;Trusted_Connection=True'
+2023-01-27 23:43:29.753 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-27 23:43:29.765 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-27 23:43:29.773 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-01-27 23:43:29.791 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-01-27 23:43:29.801 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-01-27 23:43:29.808 +03:00 [INF] No migrations were applied. The database is already up to date.
+2023-01-27 23:43:29.926 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-01-27 23:43:30.707 +03:00 [INF] Executed DbCommand (37ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-01-27 23:43:30.772 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-01-27 23:43:30.973 +03:00 [INF] Now listening on: https://localhost:7189
+2023-01-27 23:43:30.975 +03:00 [INF] Now listening on: http://localhost:5242
+2023-01-27 23:43:30.976 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-01-27 23:43:30.977 +03:00 [INF] Hosting environment: Development
+2023-01-27 23:43:30.977 +03:00 [INF] Content root path: C:\Users\max\source\Temp\Salik Bug Tracker\Salik Bug Tracker API\

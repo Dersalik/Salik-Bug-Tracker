@@ -77,7 +77,6 @@ namespace Salik_Bug_Tracker_API.Controllers
         /// </summary>
         /// <param name="BugId"></param>
         /// 
-        
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

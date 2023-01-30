@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Salik_Bug_Tracker_API.Data.Repository.IRepository;
 using Salik_Bug_Tracker_API.DTO;
 using Salik_Bug_Tracker_API.Models;
+using Salik_Bug_Tracker_API.Models.Helpers;
 
 namespace Salik_Bug_Tracker_API.Controllers
 {
@@ -27,7 +29,11 @@ namespace Salik_Bug_Tracker_API.Controllers
             _unitOfWork = unitOfWork;
             _logger = logger;
         }
-
+        /// <summary>
+        /// get all the bugs in a module 
+        /// </summary>
+        /// <param name="ModuleId"></param>
+        
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -60,6 +66,12 @@ namespace Salik_Bug_Tracker_API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
             }
         }
+        /// <summary>
+        /// gets a particular bug 
+        /// </summary>
+        /// <param name="BugId"></param>
+        /// <param name="ProjectId"></param>
+        /// <param name="ModuleId"></param>
         [HttpGet("{BugId}",Name = "GetBug")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -91,7 +103,12 @@ namespace Salik_Bug_Tracker_API.Controllers
 
 
         }
-
+        /// <summary>
+        /// adds a newly found bug in a module 
+        /// </summary>
+        /// <param name="ProjectId"></param>
+        /// <param name="ModuleId"></param>
+        /// <param name="bugDTO"></param>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
@@ -131,6 +148,13 @@ namespace Salik_Bug_Tracker_API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error saving data to the database");
             }
         }
+        /// <summary>
+        /// Updates a bug 
+        /// </summary>
+        /// <param name="BugId"></param>
+        /// <param name="ProjectId"></param>
+        /// <param name="ModuleId"></param>
+        /// <param name="bugDTO"></param>
         [HttpPut("{BugId}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
@@ -166,6 +190,13 @@ namespace Salik_Bug_Tracker_API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error updating bug in the database");
             }
         }
+        /// <summary>
+        /// updates a specific attribute of a bug 
+        /// </summary>
+        /// <param name="BugId"></param>
+        /// <param name="ProjectId"></param>
+        /// <param name="ModuleId"></param>
+        /// <param name="patchDoc"></param>
         [HttpPatch("{BugId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary), StatusCodes.Status400BadRequest)]
@@ -211,5 +242,38 @@ namespace Salik_Bug_Tracker_API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error updating bug in the database");
             }
         }
+        /// <summary>
+        /// Deletes a bug 
+        /// </summary>
+        /// <param name="BugId"></param>
+        [HttpDelete("{BugId}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> DeleteBug(int BugId)
+        {
+            try
+            {
+                var bug = await _unitOfWork.bugRepository.GetFirstOrDefault(b => b.Id == BugId);
+
+                if (bug == null)
+                {
+                    _logger.LogWarning($"Bug with id: {BugId} not found.");
+                    return NotFound();
+                }
+
+                _unitOfWork.bugRepository.Remove(bug);
+                await _unitOfWork.Save();
+
+                _logger.LogInformation($"Bug with id: {BugId} deleted successfully.");
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error deleting bug with id: {BugId}. Error: {ex}");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting data from the database");
+            }
+        }
+
     }
 }

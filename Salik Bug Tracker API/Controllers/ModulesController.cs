@@ -27,7 +27,10 @@ namespace Salik_Bug_Tracker_API.Controllers
             _unitOfWork = unitOfWork;
             _logger = logger;
         }
-
+        /// <summary>
+        /// gets all the modules of a particular project 
+        /// </summary>
+        /// <param name="ProjectId"></param>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -56,8 +59,12 @@ namespace Salik_Bug_Tracker_API.Controllers
             }
 
         }
-
-        [HttpGet("{ModuleId}", Name = "GetModule")]
+        /// <summary>
+        /// gets a specific module 
+        /// </summary>
+        /// <param name="ProjectId"></param>
+        /// <param name="ModuleId"></param>
+\        [HttpGet("{ModuleId}", Name = "GetModule")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
@@ -92,7 +99,11 @@ namespace Salik_Bug_Tracker_API.Controllers
             }
 
         }
-
+        /// <summary>
+        /// creates a new module 
+        /// </summary>
+        /// <param name="ProjectId"></param>
+        /// <param name="Module"></param>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -130,7 +141,12 @@ namespace Salik_Bug_Tracker_API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error inserting data in the database");
             }
         }
-
+        /// <summary>
+        /// updates a module 
+        /// </summary>
+        /// <param name="ProjectId"></param>
+        /// <param name="ModuleId"></param>
+        /// <param name="module"></param>
         [HttpPut("{ModuleId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -173,7 +189,12 @@ namespace Salik_Bug_Tracker_API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data in the database");
             }
         }
-
+        /// <summary>
+        /// updates a specific attribute of a module 
+        /// </summary>
+        /// <param name="ProjectId"></param>
+        /// <param name="ModuleId"></param>
+        /// <param name="patchDocument"></param>
         [HttpPatch("{ModuleId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -229,7 +250,11 @@ namespace Salik_Bug_Tracker_API.Controllers
             }
 
         }
-
+        /// <summary>
+        /// deletes a module 
+        /// </summary>
+        /// <param name="ProjectId"></param>
+        /// <param name="ModuleId"></param>
         [HttpDelete]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

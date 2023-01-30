@@ -25,7 +25,12 @@ namespace Salik_Bug_Tracker_API.Controllers
             _unitOfWork = unitOfWork;
             _logger = logger;
         }
-
+        /// <summary>
+        /// assigns developer to a bug 
+        /// </summary>
+        /// <param name="ProjectId"></param>
+        /// <param name="ModuleId"></param>
+        /// <param name="DeveloperId"></param>
         [HttpPost("{DeveloperId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -82,8 +87,13 @@ namespace Salik_Bug_Tracker_API.Controllers
 
 
         }
-
-        [HttpDelete("{DeveloperId}")]
+        /// <summary>
+        /// Unassigns developer from a bug 
+        /// </summary>
+        /// <param name="ProjectId"></param>
+        /// <param name="ModuleId"></param>
+        /// <param name="DeveloperId"></param>
+\        [HttpDelete("{DeveloperId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
@@ -138,8 +148,11 @@ namespace Salik_Bug_Tracker_API.Controllers
 
 
         }
-
-        [HttpGet]
+        /// <summary>
+        /// gets developers that are assigned to a module 
+        /// </summary>
+        /// <param name="ModuleId"></param>
+\        [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]

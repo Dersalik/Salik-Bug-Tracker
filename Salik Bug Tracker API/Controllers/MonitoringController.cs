@@ -21,7 +21,10 @@ namespace EventScheduler.Controllers
         {
             _db = db;
         }
-
+        /// <summary>
+        /// gets the current status of the database 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> Get()
         {

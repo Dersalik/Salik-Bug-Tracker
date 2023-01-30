@@ -34,7 +34,13 @@ namespace Salik_Bug_Tracker_API.Controllers
             _logger = logger;
         }
 
-
+        /// <summary>
+        /// gets list of the projects 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="searchQuery"></param>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize"></param>
         [HttpGet()]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
@@ -63,7 +69,10 @@ namespace Salik_Bug_Tracker_API.Controllers
             }
         }
 
-
+        /// <summary>
+        /// Gets a particular project 
+        /// </summary>
+        /// <param name="projectId"></param>
         [HttpGet("{projectId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -91,7 +100,11 @@ namespace Salik_Bug_Tracker_API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
             }
         }
-
+        /// <summary>
+        /// Updates a project 
+        /// </summary>
+        /// <param name="ProjectId"></param>
+        /// <param name="projectDto"></param>
         [HttpPut("{ProjectId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -126,7 +139,11 @@ namespace Salik_Bug_Tracker_API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error updating data in the database");
             }
         }
-
+        /// <summary>
+        /// Updates a specific attribute of a project 
+        /// </summary>
+        /// <param name="ProjectId"></param>
+        /// <param name="patchDocument"></param>
         [HttpPatch("{ProjectId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -174,6 +191,10 @@ namespace Salik_Bug_Tracker_API.Controllers
             }
 
         }
+        /// <summary>
+        /// Creates a new project 
+        /// </summary>
+        /// <param name="projectDto"></param>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -203,7 +224,10 @@ namespace Salik_Bug_Tracker_API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error creating data in the database");
             }
         }
-
+        /// <summary>
+        /// Deletes a project 
+        /// </summary>
+        /// <param name="ProjectId"></param>
         [HttpDelete("{ProjectId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
