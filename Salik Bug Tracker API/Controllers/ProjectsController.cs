@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
 using Salik_Bug_Tracker_API.Data.Repository;
 using Salik_Bug_Tracker_API.Data.Repository.IRepository;
@@ -23,15 +24,19 @@ namespace Salik_Bug_Tracker_API.Controllers
         {
             get;
         }
+        private readonly IMemoryCache _memoryCache;
+
         private IUnitOfWork _unitOfWork { get; }
         const int maxProjectPageSize = 14;
         private readonly ILogger<ProjectsController> _logger;
 
-        public ProjectsController(IMapper mapper, IUnitOfWork unitOfWork, ILogger<ProjectsController> logger)
+        public ProjectsController(IMapper mapper, IUnitOfWork unitOfWork, ILogger<ProjectsController> logger, IMemoryCache memoryCache)
         {
             this.Mapper = mapper;
             this._unitOfWork = unitOfWork;
             _logger = logger;
+            _memoryCache = memoryCache;
+
         }
 
         /// <summary>

@@ -29,6 +29,8 @@ builder.Services.AddHealthChecks()
 
 builder.Logging.ClearProviders();
 
+builder.Services.AddMemoryCache();
+
 builder.Host.UseSerilog((context, loggerConfig) => {
     loggerConfig
     .ReadFrom.Configuration(context.Configuration)
