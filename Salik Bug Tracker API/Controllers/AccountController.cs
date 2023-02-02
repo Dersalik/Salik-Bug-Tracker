@@ -127,12 +127,17 @@ namespace Salik_Bug_Tracker_API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error");
             }
         }
-
+        /// <summary>
+        /// A method to referesh generated tokens after they are expired 
+        /// </summary>
+        /// <param name="tokenRequestVM"></param>
+        /// <returns></returns>
         [HttpPost("refresh-token")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         [ProducesDefaultResponseType]
+        [AllowAnonymous]
         public async Task<IActionResult> RefreshToken([FromBody] TokenRequestDTO tokenRequestVM)
         {
             try

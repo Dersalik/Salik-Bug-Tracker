@@ -50,8 +50,8 @@ namespace Salik_Bug_Tracker_API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         [ProducesDefaultResponseType]
-        public async Task<ActionResult<IEnumerable<ProjectDTO>>> getProjects([FromQuery]
-            string? name, [FromQuery] string? searchQuery, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        public async Task<ActionResult<IEnumerable<ProjectDTO>>> GetProjects([FromQuery]
+    string? name, [FromQuery] string? searchQuery, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
             try
             {
@@ -61,11 +61,24 @@ namespace Salik_Bug_Tracker_API.Controllers
                     pageSize = maxProjectPageSize;
                 }
 
+                // Check the cache for the results first
+                var cacheKey = $"GetProjects_{name}_{searchQuery}_{pageNumber}_{pageSize}";
+                var cachedResult = _memoryCache.Get<IEnumerable<ProjectDTO>>(cacheKey);
+                if (cachedResult != null)
+                {
+                    _logger.LogInformation("Retrieved data from cache");
+                    return Ok(cachedResult);
+                }
+
                 var (projects, paginationMetadata) = await _unitOfWork.projectRepository.GetProjectsAsync(name, searchQuery, pageNumber, pageSize);
                 Response.Headers.Add("X-Pagination", System.Text.Json.JsonSerializer.Serialize(paginationMetadata));
                 var res = Mapper.Map<IEnumerable<ProjectDTO>>(projects);
+
+                // Store the result in the cache for later
+                _memoryCache.Set(cacheKey, res, TimeSpan.FromMinutes(30));
+
                 _logger.LogInformation("Get projects called successfully");
-                return Ok(Mapper.Map<IEnumerable<ProjectDTO>>(projects));
+                return Ok(res);
             }
             catch (Exception ex)
             {

@@ -1938,3 +1938,333 @@ WHERE [a].[NormalizedName] = @__normalizedName_0
 2023-01-30 22:19:42.517 +03:00 [INF] Application started. Press Ctrl+C to shut down.
 2023-01-30 22:19:42.519 +03:00 [INF] Hosting environment: Development
 2023-01-30 22:19:42.521 +03:00 [INF] Content root path: C:\Users\max\source\Temp\Salik Bug Tracker\Salik Bug Tracker API\
+2023-02-02 23:58:03.550 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-02 23:58:03.599 +03:00 [INF] Ensuring database exists and is up to date at connection string 'Server=(localdb)\MSSQLLocalDB;Database=BugTracker;Trusted_Connection=True'
+2023-02-02 23:58:06.076 +03:00 [INF] Executed DbCommand (77ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-02-02 23:58:06.209 +03:00 [INF] Executed DbCommand (61ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-02-02 23:58:06.220 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-02-02 23:58:06.229 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-02-02 23:58:06.267 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-02-02 23:58:06.310 +03:00 [INF] No migrations were applied. The database is already up to date.
+2023-02-02 23:58:06.682 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-02 23:58:06.684 +03:00 [INF] Ensuring database exists and is up to date at connection string 'Server=(localdb)\MSSQLLocalDB;Database=BugTracker;Trusted_Connection=True'
+2023-02-02 23:58:06.687 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-02-02 23:58:06.691 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-02-02 23:58:06.694 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-02-02 23:58:06.697 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-02-02 23:58:06.700 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-02-02 23:58:06.704 +03:00 [INF] No migrations were applied. The database is already up to date.
+2023-02-02 23:58:06.775 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-02 23:58:07.490 +03:00 [INF] Executed DbCommand (50ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-02-02 23:58:07.588 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-02-02 23:58:07.974 +03:00 [INF] Now listening on: https://localhost:7189
+2023-02-02 23:58:07.977 +03:00 [INF] Now listening on: http://localhost:5242
+2023-02-02 23:58:07.979 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-02-02 23:58:07.982 +03:00 [INF] Hosting environment: Development
+2023-02-02 23:58:07.985 +03:00 [INF] Content root path: C:\Users\max\source\Temp\Salik Bug Tracker\Salik Bug Tracker API\
+2023-02-03 00:01:28.945 +03:00 [INF] Received login request for user: admin@gmail.com
+2023-02-03 00:01:28.964 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:01:29.005 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Discriminator], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[Name], [a].[Score], [a].[speciality]
+FROM [AspNetUsers] AS [a]
+WHERE ([a].[Discriminator] = N'ApplicationUser') AND ([a].[NormalizedEmail] = @__normalizedEmail_0)
+2023-02-03 00:01:29.357 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2023-02-03 00:01:29.860 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Boolean), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [RefreshTokens] ([DateAdded], [DateExpire], [IsRevoked], [JwtId], [Token], [UserId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+SELECT [Id]
+FROM [RefreshTokens]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2023-02-03 00:01:29.957 +03:00 [INF] Successfully logged in user: admin@gmail.com
+2023-02-03 00:06:35.007 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:06:35.052 +03:00 [INF] Ensuring database exists and is up to date at connection string 'Server=(localdb)\MSSQLLocalDB;Database=BugTracker;Trusted_Connection=True'
+2023-02-03 00:06:35.767 +03:00 [INF] Executed DbCommand (68ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-02-03 00:06:35.885 +03:00 [INF] Executed DbCommand (59ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-02-03 00:06:35.896 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-02-03 00:06:35.903 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-02-03 00:06:35.941 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-02-03 00:06:35.984 +03:00 [INF] No migrations were applied. The database is already up to date.
+2023-02-03 00:06:36.309 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:06:36.312 +03:00 [INF] Ensuring database exists and is up to date at connection string 'Server=(localdb)\MSSQLLocalDB;Database=BugTracker;Trusted_Connection=True'
+2023-02-03 00:06:36.314 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-02-03 00:06:36.317 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-02-03 00:06:36.321 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-02-03 00:06:36.323 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-02-03 00:06:36.327 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-02-03 00:06:36.330 +03:00 [INF] No migrations were applied. The database is already up to date.
+2023-02-03 00:06:36.395 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:06:37.128 +03:00 [INF] Executed DbCommand (46ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-02-03 00:06:37.220 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-02-03 00:06:37.484 +03:00 [INF] Now listening on: https://localhost:7189
+2023-02-03 00:06:37.486 +03:00 [INF] Now listening on: http://localhost:5242
+2023-02-03 00:06:37.488 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-02-03 00:06:37.489 +03:00 [INF] Hosting environment: Development
+2023-02-03 00:06:37.491 +03:00 [INF] Content root path: C:\Users\max\source\Temp\Salik Bug Tracker\Salik Bug Tracker API\
+2023-02-03 00:07:04.181 +03:00 [INF] Received login request for user: admin@gmail.com
+2023-02-03 00:07:04.203 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:07:04.250 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Discriminator], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[Name], [a].[Score], [a].[speciality]
+FROM [AspNetUsers] AS [a]
+WHERE ([a].[Discriminator] = N'ApplicationUser') AND ([a].[NormalizedEmail] = @__normalizedEmail_0)
+2023-02-03 00:07:04.536 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2023-02-03 00:07:05.022 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Boolean), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [RefreshTokens] ([DateAdded], [DateExpire], [IsRevoked], [JwtId], [Token], [UserId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+SELECT [Id]
+FROM [RefreshTokens]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2023-02-03 00:07:05.117 +03:00 [INF] Successfully logged in user: admin@gmail.com
+2023-02-03 00:07:59.007 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:07:59.028 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__tokenRequestVM_RefreshToken_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[DateAdded], [r].[DateExpire], [r].[IsRevoked], [r].[JwtId], [r].[Token], [r].[UserId]
+FROM [RefreshTokens] AS [r]
+WHERE [r].[Token] = @__tokenRequestVM_RefreshToken_0
+2023-02-03 00:07:59.074 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Discriminator], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[Name], [a].[Score], [a].[speciality]
+FROM [AspNetUsers] AS [a]
+WHERE ([a].[Discriminator] = N'ApplicationUser') AND ([a].[Id] = @__p_0)
+2023-02-03 00:07:59.234 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2023-02-03 00:08:12.404 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:08:12.419 +03:00 [INF] Retrieving Projects with Name: , Search Query: , Page Number: 1, and Page Size: 10.
+2023-02-03 00:08:14.976 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [projects] AS [p]
+2023-02-03 00:08:15.787 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[ActualEndDate], [p].[DateAdded], [p].[Description], [p].[Name], [p].[TargetEndDate]
+FROM [projects] AS [p]
+ORDER BY [p].[Name]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2023-02-03 00:08:16.678 +03:00 [INF] Get projects called successfully
+2023-02-03 00:08:19.822 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:08:19.827 +03:00 [INF] Retrieving Projects with Name: , Search Query: , Page Number: 1, and Page Size: 10.
+2023-02-03 00:08:19.828 +03:00 [INF] Retrieved data from cache
+2023-02-03 00:08:20.627 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:08:20.634 +03:00 [INF] Retrieving Projects with Name: , Search Query: , Page Number: 1, and Page Size: 10.
+2023-02-03 00:08:20.636 +03:00 [INF] Retrieved data from cache
+2023-02-03 00:08:21.181 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:08:21.185 +03:00 [INF] Retrieving Projects with Name: , Search Query: , Page Number: 1, and Page Size: 10.
+2023-02-03 00:08:21.187 +03:00 [INF] Retrieved data from cache
+2023-02-03 00:08:21.958 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:08:21.964 +03:00 [INF] Retrieving Projects with Name: , Search Query: , Page Number: 1, and Page Size: 10.
+2023-02-03 00:08:21.965 +03:00 [INF] Retrieved data from cache
+2023-02-03 00:08:22.803 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:08:22.806 +03:00 [INF] Retrieving Projects with Name: , Search Query: , Page Number: 1, and Page Size: 10.
+2023-02-03 00:08:22.808 +03:00 [INF] Retrieved data from cache
+2023-02-03 00:08:23.900 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:08:23.906 +03:00 [INF] Retrieving Projects with Name: , Search Query: , Page Number: 1, and Page Size: 10.
+2023-02-03 00:08:23.907 +03:00 [INF] Retrieved data from cache
+2023-02-03 00:08:24.746 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:08:24.751 +03:00 [INF] Retrieving Projects with Name: , Search Query: , Page Number: 1, and Page Size: 10.
+2023-02-03 00:08:24.752 +03:00 [INF] Retrieved data from cache
+2023-02-03 00:08:38.961 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:08:39.026 +03:00 [INF] Ensuring database exists and is up to date at connection string 'Server=(localdb)\MSSQLLocalDB;Database=BugTracker;Trusted_Connection=True'
+2023-02-03 00:08:39.937 +03:00 [INF] Executed DbCommand (107ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-02-03 00:08:40.089 +03:00 [INF] Executed DbCommand (76ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-02-03 00:08:40.102 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-02-03 00:08:40.107 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-02-03 00:08:40.158 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-02-03 00:08:40.214 +03:00 [INF] No migrations were applied. The database is already up to date.
+2023-02-03 00:08:40.544 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:08:40.553 +03:00 [INF] Ensuring database exists and is up to date at connection string 'Server=(localdb)\MSSQLLocalDB;Database=BugTracker;Trusted_Connection=True'
+2023-02-03 00:08:40.556 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-02-03 00:08:40.560 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-02-03 00:08:40.565 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-02-03 00:08:40.569 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-02-03 00:08:40.574 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-02-03 00:08:40.578 +03:00 [INF] No migrations were applied. The database is already up to date.
+2023-02-03 00:08:40.643 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:08:41.428 +03:00 [INF] Executed DbCommand (48ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-02-03 00:08:41.544 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-02-03 00:08:41.897 +03:00 [INF] Now listening on: https://localhost:7189
+2023-02-03 00:08:41.899 +03:00 [INF] Now listening on: http://localhost:5242
+2023-02-03 00:08:41.901 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-02-03 00:08:41.902 +03:00 [INF] Hosting environment: Development
+2023-02-03 00:08:41.903 +03:00 [INF] Content root path: C:\Users\max\source\Temp\Salik Bug Tracker\Salik Bug Tracker API\
+2023-02-03 00:08:46.445 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:08:46.493 +03:00 [INF] Retrieving Projects with Name: , Search Query: , Page Number: 1, and Page Size: 10.
+2023-02-03 00:08:48.507 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [projects] AS [p]
+2023-02-03 00:08:48.910 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[ActualEndDate], [p].[DateAdded], [p].[Description], [p].[Name], [p].[TargetEndDate]
+FROM [projects] AS [p]
+ORDER BY [p].[Name]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2023-02-03 00:08:49.938 +03:00 [INF] Get projects called successfully
+2023-02-03 00:08:55.675 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:08:55.680 +03:00 [INF] Retrieving Projects with Name: , Search Query: , Page Number: 1, and Page Size: 10.
+2023-02-03 00:08:55.681 +03:00 [INF] Retrieved data from cache
+2023-02-03 00:09:00.076 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:09:00.079 +03:00 [INF] Retrieving Projects with Name: , Search Query: , Page Number: 1, and Page Size: 10.
+2023-02-03 00:09:00.080 +03:00 [INF] Retrieved data from cache
+2023-02-03 00:09:37.387 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:09:37.455 +03:00 [INF] Ensuring database exists and is up to date at connection string 'Server=(localdb)\MSSQLLocalDB;Database=BugTracker;Trusted_Connection=True'
+2023-02-03 00:09:38.295 +03:00 [INF] Executed DbCommand (93ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-02-03 00:09:38.429 +03:00 [INF] Executed DbCommand (64ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-02-03 00:09:38.441 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-02-03 00:09:38.445 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-02-03 00:09:38.482 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-02-03 00:09:38.524 +03:00 [INF] No migrations were applied. The database is already up to date.
+2023-02-03 00:09:38.856 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:09:38.860 +03:00 [INF] Ensuring database exists and is up to date at connection string 'Server=(localdb)\MSSQLLocalDB;Database=BugTracker;Trusted_Connection=True'
+2023-02-03 00:09:38.864 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-02-03 00:09:38.867 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-02-03 00:09:38.871 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2023-02-03 00:09:38.874 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2023-02-03 00:09:38.878 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2023-02-03 00:09:38.881 +03:00 [INF] No migrations were applied. The database is already up to date.
+2023-02-03 00:09:38.952 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:09:39.775 +03:00 [INF] Executed DbCommand (56ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-02-03 00:09:39.867 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2023-02-03 00:09:40.137 +03:00 [INF] Now listening on: https://localhost:7189
+2023-02-03 00:09:40.138 +03:00 [INF] Now listening on: http://localhost:5242
+2023-02-03 00:09:40.140 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-02-03 00:09:40.141 +03:00 [INF] Hosting environment: Development
+2023-02-03 00:09:40.143 +03:00 [INF] Content root path: C:\Users\max\source\Temp\Salik Bug Tracker\Salik Bug Tracker API\
+2023-02-03 00:10:57.056 +03:00 [INF] Received login request for user: admin@gmail.com
+2023-02-03 00:10:57.071 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:10:57.104 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Discriminator], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[Name], [a].[Score], [a].[speciality]
+FROM [AspNetUsers] AS [a]
+WHERE ([a].[Discriminator] = N'ApplicationUser') AND ([a].[NormalizedEmail] = @__normalizedEmail_0)
+2023-02-03 00:10:57.383 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2023-02-03 00:10:57.819 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Boolean), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [RefreshTokens] ([DateAdded], [DateExpire], [IsRevoked], [JwtId], [Token], [UserId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+SELECT [Id]
+FROM [RefreshTokens]
+WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
+2023-02-03 00:10:57.945 +03:00 [INF] Successfully logged in user: admin@gmail.com
+2023-02-03 00:11:40.083 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:11:40.095 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__tokenRequestVM_RefreshToken_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[DateAdded], [r].[DateExpire], [r].[IsRevoked], [r].[JwtId], [r].[Token], [r].[UserId]
+FROM [RefreshTokens] AS [r]
+WHERE [r].[Token] = @__tokenRequestVM_RefreshToken_0
+2023-02-03 00:11:40.127 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Discriminator], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName], [a].[Name], [a].[Score], [a].[speciality]
+FROM [AspNetUsers] AS [a]
+WHERE ([a].[Discriminator] = N'ApplicationUser') AND ([a].[Id] = @__p_0)
+2023-02-03 00:11:40.177 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2023-02-03 00:12:03.768 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:12:03.875 +03:00 [INF] Retrieving Projects with Name: , Search Query: , Page Number: 1, and Page Size: 10.
+2023-02-03 00:12:07.152 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [projects] AS [p]
+2023-02-03 00:12:07.891 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[ActualEndDate], [p].[DateAdded], [p].[Description], [p].[Name], [p].[TargetEndDate]
+FROM [projects] AS [p]
+ORDER BY [p].[Name]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2023-02-03 00:12:09.119 +03:00 [INF] Get projects called successfully
+2023-02-03 00:12:20.675 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:12:20.680 +03:00 [INF] Retrieving Projects with Name: , Search Query: , Page Number: 1, and Page Size: 10.
+2023-02-03 00:12:20.682 +03:00 [INF] Retrieved data from cache
+2023-02-03 00:12:21.444 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:12:21.448 +03:00 [INF] Retrieving Projects with Name: , Search Query: , Page Number: 1, and Page Size: 10.
+2023-02-03 00:12:21.449 +03:00 [INF] Retrieved data from cache
+2023-02-03 00:12:36.327 +03:00 [INF] Entity Framework Core 6.0.11 initialized 'ApplicationDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.11' with options: None
+2023-02-03 00:12:36.331 +03:00 [INF] Retrieving Projects with Name: , Search Query: , Page Number: 1, and Page Size: 10.
+2023-02-03 00:12:56.547 +03:00 [INF] Retrieved data from cache
